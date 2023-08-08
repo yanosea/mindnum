@@ -17,7 +17,8 @@ var rootCmd = &cobra.Command{
 	Short:   "'mindnum' is a CLI tool to get the mind number from the birthday.",
 	Long: `'mindnum' is a CLI tool to get the mind number from the birthday.
 
-You can get the mind number from the birthday (yyyyMMdd).`,
+You can get the mind number from the birthday (yyyyMMdd).
+You can check the character from the mind number.`,
 }
 
 func Execute() {
