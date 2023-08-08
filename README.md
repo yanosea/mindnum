@@ -13,6 +13,7 @@ Get or Check your mind number.
 
 ![Language:Go](https://img.shields.io/static/v1?label=Language&message=Go&color=blue&style=flat-square)
 ![License:MIT](https://img.shields.io/static/v1?label=License&message=MIT&color=blue&style=flat-square)
+[![Latest Release](https://img.shields.io/github/v/release/yanosea/mindnum?style=flat-square)](https://github.com/yanosea/mindnum/releases/latest)
 
 </div>
 
