@@ -24,7 +24,7 @@ You must input the birthday in the format "yyyyMMdd".`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if _, err := time.Parse("20060102", birthday); err != nil {
 			return fmt.Errorf(`
-  Invalid date format
+  Invalid date format: You must input the birthday in the format "yyyyMMdd".
 `)
 		}
 		var mindNum int
