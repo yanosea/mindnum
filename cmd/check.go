@@ -4,9 +4,7 @@ Copyright © 2023 yanosea <myanoshi0626@gmail.com>
 package cmd
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -26,38 +24,36 @@ You must input the mind number in the range of 1 to 9.`,
   Invalid arg: You must input the mind number in the range of 1 to 9.
 `)
 		}
-		var filePath = "resources/descriptions/"
+		var descriptionPath = resourcePath + "descriptions/"
 		switch mindNum {
 		case 1:
-			filePath += "1.txt"
+			descriptionPath += "1.txt"
 		case 2:
-			filePath += "2.txt"
+			descriptionPath += "2.txt"
 		case 3:
-			filePath += "3.txt"
+			descriptionPath += "3.txt"
 		case 4:
-			filePath += "4.txt"
+			descriptionPath += "4.txt"
 		case 5:
-			filePath += "5.txt"
+			descriptionPath += "5.txt"
 		case 6:
-			filePath += "6.txt"
+			descriptionPath += "6.txt"
 		case 7:
-			filePath += "7.txt"
+			descriptionPath += "7.txt"
 		case 8:
-			filePath += "8.txt"
+			descriptionPath += "8.txt"
 		case 9:
-			filePath += "9.txt"
+			descriptionPath += "9.txt"
 		default:
 			panic(nil)
 		}
-		f, err := os.Open(filePath)
-		if err != nil {
-			panic(err)
+
+		if description, err := resources.ReadFile(descriptionPath); err == nil {
+			fmt.Print(string(description))
+			return nil
+		} else {
+			panic(nil)
 		}
-		scanner := bufio.NewScanner(f)
-		for scanner.Scan() {
-			fmt.Println(scanner.Text())
-		}
-		return nil
 	},
 }
 
