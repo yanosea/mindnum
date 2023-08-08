@@ -9,7 +9,7 @@
 
 # 🧠 mindnum
 
-Get your mind number.
+Get or Check your mind number.
 
 ![Language:Go](https://img.shields.io/static/v1?label=Language&message=Go&color=blue&style=flat-square)
 ![License:MIT](https://img.shields.io/static/v1?label=License&message=MIT&color=blue&style=flat-square)
@@ -32,8 +32,10 @@ Usage of mindnum:
     show version
   -h, --help
     help for mindnum
-  get -b, --birthday yyyymmdd
+  get -b, --birthday [yyyymmdd]
     get your mind number
+  check -n --mindnum [int]
+    check the character of the mind number you input
 ```
 
 ## 🔧 Installation
