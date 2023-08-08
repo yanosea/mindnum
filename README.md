@@ -41,7 +41,7 @@ Usage of mindnum:
 ### 🍺Using homebrew
 
 ```
-brew tap yanosea/mindnum
+brew tap yanosea/tap
 brew install yanosea/tap/mindnum
 ```
 
