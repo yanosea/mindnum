@@ -25,8 +25,8 @@ You can get the mind number from the birthday (yyyyMMdd).
 You can check the character from the mind number.`,
 }
 
-func Execute(embeded embed.FS) {
-	resources = embeded
+func Execute(embedded embed.FS) {
+	resources = embedded
 	err := rootCmd.Execute()
 	if err != nil {
 		os.Exit(1)
