@@ -59,7 +59,7 @@ brew upgrade mindnum
 
 [🔓MIT](./LICENSE)
 
-## ✏️ Author
+## 🖊️ Author
 
 [🏹yanosea](https://github.com/yanosea)
 
