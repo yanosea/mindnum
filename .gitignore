@@ -1,4 +1,5 @@
-# IGNORE FOLDER
+# ignore folders
 dist/
 
-# IGNORE FILE
+# ignore files
+mindnum
