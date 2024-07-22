@@ -45,7 +45,7 @@ changelog:
 # vim: set ts=2 sw=2 tw=0 fo=cnqoj
 
 brews:
-  - tap:
+  - repository:
       owner: yanosea
       name: homebrew-tap
       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
