@@ -62,7 +62,7 @@ Go to the [Releases](https://github.com/yanosea/mindnum/releases) and download t
 
 ### 🐭 Using go
 
-reinstall 'mindnum'!
+reinstall `mindnum`!
 
 ```
 go install github.com/yanosea/mindnum@latest
