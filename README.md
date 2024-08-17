@@ -54,6 +54,10 @@ brew tap yanosea/tap
 brew install yanosea/tap/mindnum
 ```
 
+### 📦 Download from release
+
+Go to the [Releases](https://github.com/yanosea/mindnum/releases) and download the latest binary for your platform.  
+
 ## ✨ Update
 
 ### 🐭 Using go
@@ -70,6 +74,10 @@ go install github.com/yanosea/mindnum@latest
 brew update
 brew upgrade mindnum
 ```
+
+### 📦 Download from release
+
+Download the latest binary from the [Releases](https://github.com/yanosea/mindnum/releases) page and replace the old binary in your `$PATH`.
 
 ## 📃 License
 
