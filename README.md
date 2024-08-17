@@ -41,7 +41,13 @@ Usage of mindnum:
 
 ## 🔧 Installation
 
-### 🍺Using homebrew
+### 🐭 Using go
+
+```
+go install github.com/yanosea/mindnum@latest
+```
+
+### 🍺 Using homebrew
 
 ```
 brew tap yanosea/tap
@@ -49,6 +55,16 @@ brew install yanosea/tap/mindnum
 ```
 
 ## ✨ Update
+
+### 🐭 Using go
+
+reinstall 'mindnum'!
+
+```
+go install github.com/yanosea/mindnum@latest
+```
+
+### 🍺 Using homebrew
 
 ```
 brew update
