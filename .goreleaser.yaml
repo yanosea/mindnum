@@ -2,14 +2,9 @@
 # Make sure to check the documentation at https://goreleaser.com
 version: 2
 
-before:
-  hooks:
-    # You may remove this if you don't use go modules.
-    - cd app && go mod tidy && cd pkg && go mod tidy
-    # you may remove this if you don't need go generate
-    - cd app && go generate ./... && cd pkg && go generate ./...
 builds:
-  - env:
+  - main: ./app/presentation/cli/main.go
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
