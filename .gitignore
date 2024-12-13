@@ -1,5 +1,6 @@
 # IGNORE DIRECTORY
 # IGNORE FILE
-app/presentation/cli/cli
+app/presentation/cli/mindnum/mindnum
+main
 .DS_Store
 *.log
