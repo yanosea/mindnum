@@ -53,8 +53,19 @@ Flags:
 
 ### 🐭 Using go
 
+#### If you have [gostall](https://github.com/davidmdm/gostall), execute below.
+
 ```
-go install github.com/yanosea/mindnum@latest
+GOBIN=$GOPATH/bin gostall github.com/yanosea/mindnum/app/presentation/cli@latest mindnum
+```
+
+#### or, execute below.
+
+```
+# This will install mindnum as the name cli to $GOPATH/bin, so please change the name.
+go install github.com/yanosea/mindnum/app/presentation/cli@latest 
+# Change the name to mindnum
+mv $GOPATH/bin/cli $GOPATH/bin/mindnum
 ```
 
 ### 🍺 Using homebrew
