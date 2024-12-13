@@ -3,7 +3,7 @@ package mindnum
 import (
 	"testing"
 
-	"github.com/yanosea/mindnum-pkg/proxy"
+	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
 func TestNewGetCommand(t *testing.T) {

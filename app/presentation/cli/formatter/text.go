@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	mindnumApp "github.com/yanosea/mindnum/application/mindnum"
+	mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
 )
 
 type TextFormatter struct{}

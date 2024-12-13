@@ -3,10 +3,10 @@ package mindnum
 import (
 	c "github.com/spf13/cobra"
 
-	mindnumApp "github.com/yanosea/mindnum/application/mindnum"
-	"github.com/yanosea/mindnum/presentation/cli/formatter"
+	mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
+	"github.com/yanosea/mindnum/app/presentation/cli/formatter"
 
-	"github.com/yanosea/mindnum-pkg/proxy"
+	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
 func NewVersionCommand(

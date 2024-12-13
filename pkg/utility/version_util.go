@@ -1,7 +1,7 @@
 package utility
 
 import (
-	"github.com/yanosea/mindnum-pkg/proxy"
+	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
 type VersionUtil interface {

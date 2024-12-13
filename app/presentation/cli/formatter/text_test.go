@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	mindnumApp "github.com/yanosea/mindnum/application/mindnum"
+	mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
 )
 
 func TestNewTextFormatter(t *testing.T) {

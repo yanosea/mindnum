@@ -3,10 +3,10 @@ package main
 import (
 	"os"
 
-	"github.com/yanosea/mindnum/presentation/cli/command"
+	"github.com/yanosea/mindnum/app/presentation/cli/command"
 
-	"github.com/yanosea/mindnum-pkg/proxy"
-	"github.com/yanosea/mindnum-pkg/utility"
+	"github.com/yanosea/mindnum/pkg/proxy"
+	"github.com/yanosea/mindnum/pkg/utility"
 )
 
 var (

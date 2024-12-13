@@ -3,10 +3,10 @@ package command
 import (
 	"os"
 
-	"github.com/yanosea/mindnum/presentation/cli/formatter"
-	"github.com/yanosea/mindnum/presentation/cli/presenter"
+	"github.com/yanosea/mindnum/app/presentation/cli/formatter"
+	"github.com/yanosea/mindnum/app/presentation/cli/presenter"
 
-	"github.com/yanosea/mindnum-pkg/proxy"
+	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
 type Cli struct {
