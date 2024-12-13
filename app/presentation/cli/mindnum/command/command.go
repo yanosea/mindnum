@@ -3,8 +3,8 @@ package command
 import (
 	"os"
 
-	"github.com/yanosea/mindnum/app/presentation/cli/formatter"
-	"github.com/yanosea/mindnum/app/presentation/cli/presenter"
+	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
+	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/presenter"
 
 	"github.com/yanosea/mindnum/pkg/proxy"
 )

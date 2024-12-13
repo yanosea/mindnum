@@ -63,21 +63,21 @@
 				
 				<option value="file3">github.com/yanosea/mindnum/app/infrastructure/text/repository/mindnum_repository.go (100.0%)</option>
 				
-				<option value="file4">github.com/yanosea/mindnum/app/presentation/cli/command/command.go (100.0%)</option>
+				<option value="file4">github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/command.go (100.0%)</option>
 				
-				<option value="file5">github.com/yanosea/mindnum/app/presentation/cli/command/mindnum/get.go (100.0%)</option>
+				<option value="file5">github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/mindnum/get.go (100.0%)</option>
 				
-				<option value="file6">github.com/yanosea/mindnum/app/presentation/cli/command/mindnum/version.go (100.0%)</option>
+				<option value="file6">github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/mindnum/version.go (100.0%)</option>
 				
-				<option value="file7">github.com/yanosea/mindnum/app/presentation/cli/command/root.go (100.0%)</option>
+				<option value="file7">github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/root.go (100.0%)</option>
 				
-				<option value="file8">github.com/yanosea/mindnum/app/presentation/cli/formatter/formatter.go (100.0%)</option>
+				<option value="file8">github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter/formatter.go (100.0%)</option>
 				
-				<option value="file9">github.com/yanosea/mindnum/app/presentation/cli/formatter/text.go (100.0%)</option>
+				<option value="file9">github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter/text.go (100.0%)</option>
 				
-				<option value="file10">github.com/yanosea/mindnum/app/presentation/cli/main.go (100.0%)</option>
+				<option value="file10">github.com/yanosea/mindnum/app/presentation/cli/mindnum/main.go (100.0%)</option>
 				
-				<option value="file11">github.com/yanosea/mindnum/app/presentation/cli/presenter/mindnum_presenter.go (100.0%)</option>
+				<option value="file11">github.com/yanosea/mindnum/app/presentation/cli/mindnum/presenter/mindnum_presenter.go (100.0%)</option>
 				
 				<option value="file12">github.com/yanosea/mindnum/pkg/errors/errors.go (100.0%)</option>
 				
@@ -261,8 +261,8 @@ func (r *mindnumRepository) FindByNumber(number int) (*mindnumDomain.Mindnum, er
 import (
         "os"
 
-        "github.com/yanosea/mindnum/app/presentation/cli/formatter"
-        "github.com/yanosea/mindnum/app/presentation/cli/presenter"
+        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
+        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/presenter"
 
         "github.com/yanosea/mindnum/pkg/proxy"
 )
@@ -313,7 +313,7 @@ import (
 
         mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
         mindnumRepo "github.com/yanosea/mindnum/app/infrastructure/text/repository"
-        "github.com/yanosea/mindnum/app/presentation/cli/formatter"
+        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
 
         "github.com/yanosea/mindnum/pkg/proxy"
 )
@@ -393,7 +393,7 @@ import (
         c "github.com/spf13/cobra"
 
         mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
-        "github.com/yanosea/mindnum/app/presentation/cli/formatter"
+        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
 
         "github.com/yanosea/mindnum/pkg/proxy"
 )
@@ -449,7 +449,7 @@ Flags:
 		<pre class="file" id="file7" style="display: none">package command
 
 import (
-        "github.com/yanosea/mindnum/app/presentation/cli/command/mindnum"
+        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/mindnum"
 
         "github.com/yanosea/mindnum/pkg/proxy"
 )
@@ -591,7 +591,7 @@ func (f *TextFormatter) Format(result interface{}) string <span class="cov8" tit
 import (
         "os"
 
-        "github.com/yanosea/mindnum/app/presentation/cli/command"
+        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/command"
 
         "github.com/yanosea/mindnum/pkg/proxy"
         "github.com/yanosea/mindnum/pkg/utility"

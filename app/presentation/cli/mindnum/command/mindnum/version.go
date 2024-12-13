@@ -4,7 +4,7 @@ import (
 	c "github.com/spf13/cobra"
 
 	mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
-	"github.com/yanosea/mindnum/app/presentation/cli/formatter"
+	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
 
 	"github.com/yanosea/mindnum/pkg/proxy"
 )
