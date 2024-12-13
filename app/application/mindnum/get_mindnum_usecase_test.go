@@ -12,7 +12,7 @@ import (
 )
 
 func TestNewGetMindnumUseCase(t *testing.T) {
-	mindnumRepo := mindnumRepo.NewMindnumRepository("")
+	mindnumRepo := mindnumRepo.NewMindnumRepository()
 	type args struct {
 		mindnumRepo mindnumDomain.MindnumRepository
 	}
@@ -58,7 +58,7 @@ func TestGetMindnumUseCase_Run(t *testing.T) {
 		{
 			name: "positive case",
 			fields: fields{
-				mindnumRepo: mindnumRepo.NewMindnumRepository(""),
+				mindnumRepo: mindnumRepo.NewMindnumRepository(),
 			},
 			args: args{
 				birthday: "19900719",
@@ -85,7 +85,7 @@ You may get double blessings such as pregnancy and childbirth at the same time o
 		{
 			name: "negative case (mindnumDomain.GetMindNumber() returns error)",
 			fields: fields{
-				mindnumRepo: mindnumRepo.NewMindnumRepository(""),
+				mindnumRepo: mindnumRepo.NewMindnumRepository(),
 			},
 			args: args{
 				birthday: "",

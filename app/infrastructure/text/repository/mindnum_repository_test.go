@@ -8,32 +8,18 @@ import (
 )
 
 func TestNewMindnumRepository(t *testing.T) {
-	type args struct {
-		descriptionPath string
-	}
 	tests := []struct {
 		name string
-		args args
 		want mindnumDomain.MindnumRepository
 	}{
 		{
-			name: "positive case (descriptionPath is empty)",
-			args: args{
-				descriptionPath: "",
-			},
-			want: &mindnumRepository{},
-		},
-		{
-			name: "positive case (descriptionPath is not empty)",
-			args: args{
-				descriptionPath: "test",
-			},
+			name: "positive case",
 			want: &mindnumRepository{},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NewMindnumRepository(tt.args.descriptionPath); !reflect.DeepEqual(got, tt.want) {
+			if got := NewMindnumRepository(); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("NewMindnumRepository() = %v, want %v", got, tt.want)
 			}
 		})
@@ -41,24 +27,17 @@ func TestNewMindnumRepository(t *testing.T) {
 }
 
 func Test_mindnumRepository_FindByNumber(t *testing.T) {
-	type fields struct {
-		DescriptionPath string
-	}
 	type args struct {
 		number int
 	}
 	tests := []struct {
 		name    string
-		fields  fields
 		args    args
 		want    *mindnumDomain.Mindnum
 		wantErr bool
 	}{
 		{
 			name: "positive case (number is 1)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 1,
 			},
@@ -78,9 +57,6 @@ It is important to find "my style" without fear of failure and always remember t
 		},
 		{
 			name: "positive case (number is 2)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 2,
 			},
@@ -104,9 +80,6 @@ as you will attract bad things if you only think about negative things on a regu
 		},
 		{
 			name: "positive case (number is 3)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 3,
 			},
@@ -128,9 +101,6 @@ Be careful not to set your ideals too high, as you will shut others down.
 		},
 		{
 			name: "positive case (number is 4)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 4,
 			},
@@ -154,9 +124,6 @@ You are an empress, so don't hold back or worry about what people think of you.
 		},
 		{
 			name: "positive case (number is 5)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 5,
 			},
@@ -180,9 +147,6 @@ There is no dream that you cannot achieve.
 		},
 		{
 			name: "positive case (number is 6)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 6,
 			},
@@ -205,9 +169,6 @@ Sometimes it is important to move as you please without thinking about those aro
 		},
 		{
 			name: "positive case (number is 7)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 7,
 			},
@@ -228,9 +189,6 @@ By nurturing your love, you will be able to achieve even greater happiness.
 		},
 		{
 			name: "positive case (number is 8)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 8,
 			},
@@ -252,9 +210,6 @@ It is your intuition and unfounded confidence that will lead you to success.
 		},
 		{
 			name: "positive case (number is 9)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 9,
 			},
@@ -278,9 +233,6 @@ You may get double blessings such as pregnancy and childbirth at the same time o
 		},
 		{
 			name: "negative case (number is 0)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 0,
 			},
@@ -289,9 +241,6 @@ You may get double blessings such as pregnancy and childbirth at the same time o
 		},
 		{
 			name: "negative case (number is 10)",
-			fields: fields{
-				DescriptionPath: mindnumDomain.DescriptionPath,
-			},
 			args: args{
 				number: 10,
 			},

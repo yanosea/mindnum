@@ -8,10 +8,7 @@ import (
 
 type mindnumRepository struct{}
 
-func NewMindnumRepository(descriptionPath string) mindnumDomain.MindnumRepository {
-	if descriptionPath == "" {
-		descriptionPath = mindnumDomain.DescriptionPath
-	}
+func NewMindnumRepository() mindnumDomain.MindnumRepository {
 	return &mindnumRepository{}
 }
 
