@@ -59,12 +59,13 @@ Flags:
 GOBIN=$GOPATH/bin gostall github.com/yanosea/mindnum/app/presentation/cli@latest mindnum
 ```
 
-#### or, execute below.
+#### Or, execute below.
 
 ```
 # This will install mindnum as the name cli to $GOPATH/bin, so please change the name.
 go install github.com/yanosea/mindnum/app/presentation/cli@latest 
-# Change the name to mindnum
+
+# Change the name to mindnum.
 mv $GOPATH/bin/cli $GOPATH/bin/mindnum
 ```
 
@@ -85,8 +86,20 @@ Go to the [Releases](https://github.com/yanosea/mindnum/releases) and download t
 
 Reinstall `mindnum`!
 
+#### If you have [gostall](https://github.com/davidmdm/gostall), execute below.
+
 ```
-go install github.com/yanosea/mindnum@latest
+GOBIN=$GOPATH/bin gostall github.com/yanosea/mindnum/app/presentation/cli@latest mindnum
+```
+
+#### Or, execute below.
+
+```
+# This will install mindnum as the name cli to $GOPATH/bin, so please change the name.
+go install github.com/yanosea/mindnum/app/presentation/cli@latest 
+
+# Change the name to mindnum.
+mv $GOPATH/bin/cli $GOPATH/bin/mindnum
 ```
 
 ### 🍺 Using homebrew
