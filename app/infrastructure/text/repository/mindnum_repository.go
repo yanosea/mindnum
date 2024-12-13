@@ -1,37 +1,44 @@
 package repository
 
 import (
-	"fmt"
-	"path/filepath"
-
 	mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
 
 	"github.com/yanosea/mindnum/pkg/errors"
 )
 
-type mindnumRepository struct {
-	DescriptionPath string
-}
+type mindnumRepository struct{}
 
 func NewMindnumRepository(descriptionPath string) mindnumDomain.MindnumRepository {
 	if descriptionPath == "" {
 		descriptionPath = mindnumDomain.DescriptionPath
 	}
-	return &mindnumRepository{
-		DescriptionPath: descriptionPath,
-	}
+	return &mindnumRepository{}
 }
 
 func (r *mindnumRepository) FindByNumber(number int) (*mindnumDomain.Mindnum, error) {
-	if number < 1 || 9 < number {
+	var description string
+	switch number {
+	case 1:
+		description = DescriptionOne
+	case 2:
+		description = DescriptionTwo
+	case 3:
+		description = DescriptionThree
+	case 4:
+		description = DescriptionFour
+	case 5:
+		description = DescriptionFive
+	case 6:
+		description = DescriptionSix
+	case 7:
+		description = DescriptionSeven
+	case 8:
+		description = DescriptionEight
+	case 9:
+		description = DescriptionNine
+	default:
 		return nil, errors.New("number out of range")
 	}
-	fileName := fmt.Sprintf("%d.txt", number)
 
-	description, err := mindnumDomain.Embedded.ReadFile(filepath.Join(r.DescriptionPath, fileName))
-	if err != nil {
-		return nil, err
-	}
-
-	return mindnumDomain.NewMindnum(number, string(description))
+	return mindnumDomain.NewMindnum(number, description)
 }

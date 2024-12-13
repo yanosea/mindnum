@@ -1,12 +1,8 @@
 package mindnum
 
-import (
-	"embed"
-)
+import ()
 
 var (
-	//go:embed descriptions/*
-	Embedded        embed.FS
 	DescriptionPath = "descriptions"
 )
 
