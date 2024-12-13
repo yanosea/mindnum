@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/yanosea/mindnum/app/presentation/cli/command"
+	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/command"
 
 	"github.com/yanosea/mindnum/pkg/proxy"
 	"github.com/yanosea/mindnum/pkg/utility"

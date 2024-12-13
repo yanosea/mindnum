@@ -1,7 +1,7 @@
 package command
 
 import (
-	"github.com/yanosea/mindnum/app/presentation/cli/command/mindnum"
+	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/mindnum"
 
 	"github.com/yanosea/mindnum/pkg/proxy"
 )

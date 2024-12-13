@@ -5,7 +5,7 @@ import (
 
 	mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
 	mindnumRepo "github.com/yanosea/mindnum/app/infrastructure/text/repository"
-	"github.com/yanosea/mindnum/app/presentation/cli/formatter"
+	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
 
 	"github.com/yanosea/mindnum/pkg/proxy"
 )
