@@ -3,7 +3,7 @@ package command
 import (
 	"testing"
 
-	"github.com/yanosea/mindnum-pkg/proxy"
+	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
 func TestNewRootCommand(t *testing.T) {

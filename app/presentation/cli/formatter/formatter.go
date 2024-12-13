@@ -3,7 +3,7 @@ package formatter
 import (
 	"fmt"
 
-	"github.com/yanosea/mindnum-pkg/errors"
+	"github.com/yanosea/mindnum/pkg/errors"
 )
 
 type Formatter interface {

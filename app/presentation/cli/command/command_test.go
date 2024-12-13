@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/yanosea/mindnum-pkg/proxy"
+	"github.com/yanosea/mindnum/pkg/proxy"
 
 	"go.uber.org/mock/gomock"
 )

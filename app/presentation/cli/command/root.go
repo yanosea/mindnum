@@ -1,9 +1,9 @@
 package command
 
 import (
-	"github.com/yanosea/mindnum/presentation/cli/command/mindnum"
+	"github.com/yanosea/mindnum/app/presentation/cli/command/mindnum"
 
-	"github.com/yanosea/mindnum-pkg/proxy"
+	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
 func NewRootCommand(

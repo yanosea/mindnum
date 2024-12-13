@@ -1,7 +1,7 @@
 package mindnum
 
 import (
-	mindnumDomain "github.com/yanosea/mindnum/domain/mindnum"
+	mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
 )
 
 type GetMindnumUseCase struct {

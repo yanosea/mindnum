@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>errors: Go Coverage Report</title>
+		<title>mindnum: Go Coverage Report</title>
 		<style>
 			body {
 				background: black;
@@ -55,35 +55,35 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/yanosea/mindnum-pkg/errors/errors.go (100.0%)</option>
+				<option value="file0">github.com/yanosea/mindnum/app/application/mindnum/get_mindnum_usecase.go (100.0%)</option>
 				
-				<option value="file1">github.com/yanosea/mindnum-pkg/utility/capture.go (100.0%)</option>
+				<option value="file1">github.com/yanosea/mindnum/app/application/mindnum/version_usecase.go (100.0%)</option>
 				
-				<option value="file2">github.com/yanosea/mindnum-pkg/utility/version_util.go (100.0%)</option>
+				<option value="file2">github.com/yanosea/mindnum/app/domain/mindnum/mindnum_model.go (100.0%)</option>
 				
-				<option value="file3">github.com/yanosea/mindnum/application/mindnum/get_mindnum_usecase.go (100.0%)</option>
+				<option value="file3">github.com/yanosea/mindnum/app/infrastructure/text/repository/mindnum_repository.go (100.0%)</option>
 				
-				<option value="file4">github.com/yanosea/mindnum/application/mindnum/version_usecase.go (100.0%)</option>
+				<option value="file4">github.com/yanosea/mindnum/app/presentation/cli/command/command.go (100.0%)</option>
 				
-				<option value="file5">github.com/yanosea/mindnum/domain/mindnum/mindnum_model.go (100.0%)</option>
+				<option value="file5">github.com/yanosea/mindnum/app/presentation/cli/command/mindnum/get.go (100.0%)</option>
 				
-				<option value="file6">github.com/yanosea/mindnum/infrastructure/text/repository/mindnum_repository.go (100.0%)</option>
+				<option value="file6">github.com/yanosea/mindnum/app/presentation/cli/command/mindnum/version.go (100.0%)</option>
 				
-				<option value="file7">github.com/yanosea/mindnum/presentation/cli/command/command.go (100.0%)</option>
+				<option value="file7">github.com/yanosea/mindnum/app/presentation/cli/command/root.go (100.0%)</option>
 				
-				<option value="file8">github.com/yanosea/mindnum/presentation/cli/command/mindnum/get.go (100.0%)</option>
+				<option value="file8">github.com/yanosea/mindnum/app/presentation/cli/formatter/formatter.go (100.0%)</option>
 				
-				<option value="file9">github.com/yanosea/mindnum/presentation/cli/command/mindnum/version.go (100.0%)</option>
+				<option value="file9">github.com/yanosea/mindnum/app/presentation/cli/formatter/text.go (100.0%)</option>
 				
-				<option value="file10">github.com/yanosea/mindnum/presentation/cli/command/root.go (100.0%)</option>
+				<option value="file10">github.com/yanosea/mindnum/app/presentation/cli/main.go (100.0%)</option>
 				
-				<option value="file11">github.com/yanosea/mindnum/presentation/cli/formatter/formatter.go (100.0%)</option>
+				<option value="file11">github.com/yanosea/mindnum/app/presentation/cli/presenter/mindnum_presenter.go (100.0%)</option>
 				
-				<option value="file12">github.com/yanosea/mindnum/presentation/cli/formatter/text.go (100.0%)</option>
+				<option value="file12">github.com/yanosea/mindnum/pkg/errors/errors.go (100.0%)</option>
 				
-				<option value="file13">github.com/yanosea/mindnum/presentation/cli/main.go (100.0%)</option>
+				<option value="file13">github.com/yanosea/mindnum/pkg/utility/capture.go (100.0%)</option>
 				
-				<option value="file14">github.com/yanosea/mindnum/presentation/cli/presenter/mindnum_presenter.go (100.0%)</option>
+				<option value="file14">github.com/yanosea/mindnum/pkg/utility/version_util.go (100.0%)</option>
 				
 				</select>
 			</div>
@@ -97,141 +97,10 @@
 		</div>
 		<div id="content">
 		
-		<pre class="file" id="file0" style="display: none">package errors
-
-import "fmt"
-
-type wrappedError struct {
-        err error
-        msg string
-}
-
-func (e *wrappedError) Error() string <span class="cov8" title="1">{
-        if e.err == nil &amp;&amp; e.msg == "" </span><span class="cov8" title="1">{
-                return ""
-        }</span> else<span class="cov8" title="1"> if e.err == nil &amp;&amp; e.msg != "" </span><span class="cov8" title="1">{
-                return e.msg
-        }</span> else<span class="cov8" title="1"> if e.err != nil &amp;&amp; e.msg == "" </span><span class="cov8" title="1">{
-                return e.err.Error()
-        }</span> else<span class="cov8" title="1"> {
-                return fmt.Sprintf("%s : %v", e.msg, e.err)
-        }</span>
-}
-
-func New(msg string) error <span class="cov8" title="1">{
-        return &amp;wrappedError{msg: msg}
-}</span>
-
-func Wrap(err error, msg string) error <span class="cov8" title="1">{
-        return &amp;wrappedError{
-                err: err,
-                msg: msg,
-        }
-}</span>
-</pre>
-		
-		<pre class="file" id="file1" style="display: none">package utility
+		<pre class="file" id="file0" style="display: none">package mindnum
 
 import (
-        "os"
-
-        "github.com/yanosea/mindnum-pkg/proxy"
-)
-
-type Capturable interface {
-}
-
-type Capturer struct {
-        StdBuffer proxy.Buffer
-        ErrBuffer proxy.Buffer
-}
-
-func NewCapturer(
-        sdtBuffer proxy.Buffer,
-        errBuffer proxy.Buffer,
-) *Capturer <span class="cov8" title="1">{
-        return &amp;Capturer{
-                StdBuffer: sdtBuffer,
-                ErrBuffer: errBuffer,
-        }
-}</span>
-
-func (c *Capturer) CaptureOutput(fnc func()) (string, string, error) <span class="cov8" title="1">{
-        origStdout := os.Stdout
-        origStderr := os.Stderr
-        defer func() </span><span class="cov8" title="1">{
-                os.Stdout = origStdout
-                os.Stderr = origStderr
-        }</span>()
-
-        <span class="cov8" title="1">rOut, wOut, _ := os.Pipe()
-        rErr, wErr, _ := os.Pipe()
-        os.Stdout = wOut
-        os.Stderr = wErr
-
-        fnc()
-
-        wOut.Close()
-        wErr.Close()
-
-        if _, err := c.StdBuffer.ReadFrom(rOut); err != nil </span><span class="cov8" title="1">{
-                return "", "", err
-        }</span>
-
-        <span class="cov8" title="1">if _, err := c.ErrBuffer.ReadFrom(rErr); err != nil </span><span class="cov8" title="1">{
-                return "", "", err
-        }</span>
-
-        <span class="cov8" title="1">stdout := c.StdBuffer.String()
-        errout := c.ErrBuffer.String()
-
-        c.StdBuffer.Reset()
-        c.ErrBuffer.Reset()
-
-        return stdout, errout, nil</span>
-}
-</pre>
-		
-		<pre class="file" id="file2" style="display: none">package utility
-
-import (
-        "github.com/yanosea/mindnum-pkg/proxy"
-)
-
-type VersionUtil interface {
-        GetVersion(version string) string
-}
-
-type versionUtil struct {
-        Debug proxy.Debug
-}
-
-func NewVersionUtil(
-        debug proxy.Debug,
-) VersionUtil <span class="cov8" title="1">{
-        return &amp;versionUtil{
-                Debug: debug,
-        }
-}</span>
-
-func (v *versionUtil) GetVersion(version string) string <span class="cov8" title="1">{
-        // if version is embedded, return it
-        if version != "" </span><span class="cov8" title="1">{
-                return version
-        }</span>
-
-        <span class="cov8" title="1">if i, ok := v.Debug.ReadBuildInfo(); !ok </span><span class="cov8" title="1">{
-                return "unknown"
-        }</span> else<span class="cov8" title="1"> {
-                return i.Main.Version
-        }</span>
-}
-</pre>
-		
-		<pre class="file" id="file3" style="display: none">package mindnum
-
-import (
-        mindnumDomain "github.com/yanosea/mindnum/domain/mindnum"
+        mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
 )
 
 type GetMindnumUseCase struct {
@@ -269,7 +138,7 @@ func (uc *GetMindnumUseCase) Run(birthday string) (*GetMindnumUsecaseOutputDto, 
 }
 </pre>
 		
-		<pre class="file" id="file4" style="display: none">package mindnum
+		<pre class="file" id="file1" style="display: none">package mindnum
 
 import ()
 
@@ -290,14 +159,14 @@ func (uc *VersionUseCase) Run(version string) *VersionUsecaseOutputDto <span cla
 }</span>
 </pre>
 		
-		<pre class="file" id="file5" style="display: none">package mindnum
+		<pre class="file" id="file2" style="display: none">package mindnum
 
 import (
         "strconv"
         "strings"
         "time"
 
-        "github.com/yanosea/mindnum-pkg/errors"
+        "github.com/yanosea/mindnum/pkg/errors"
 )
 
 type Mindnum struct {
@@ -344,15 +213,15 @@ func GetMindNumber(birthday string) (int, error) <span class="cov8" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file6" style="display: none">package repository
+		<pre class="file" id="file3" style="display: none">package repository
 
 import (
         "fmt"
         "path/filepath"
 
-        mindnumDomain "github.com/yanosea/mindnum/domain/mindnum"
+        mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
 
-        "github.com/yanosea/mindnum-pkg/errors"
+        "github.com/yanosea/mindnum/pkg/errors"
 )
 
 type mindnumRepository struct {
@@ -383,15 +252,15 @@ func (r *mindnumRepository) FindByNumber(number int) (*mindnumDomain.Mindnum, er
 }
 </pre>
 		
-		<pre class="file" id="file7" style="display: none">package command
+		<pre class="file" id="file4" style="display: none">package command
 
 import (
         "os"
 
-        "github.com/yanosea/mindnum/presentation/cli/formatter"
-        "github.com/yanosea/mindnum/presentation/cli/presenter"
+        "github.com/yanosea/mindnum/app/presentation/cli/formatter"
+        "github.com/yanosea/mindnum/app/presentation/cli/presenter"
 
-        "github.com/yanosea/mindnum-pkg/proxy"
+        "github.com/yanosea/mindnum/pkg/proxy"
 )
 
 type Cli struct {
@@ -433,16 +302,16 @@ func (c *Cli) Run() int <span class="cov8" title="1">{
 }
 </pre>
 		
-		<pre class="file" id="file8" style="display: none">package mindnum
+		<pre class="file" id="file5" style="display: none">package mindnum
 
 import (
         c "github.com/spf13/cobra"
 
-        mindnumApp "github.com/yanosea/mindnum/application/mindnum"
-        mindnumRepo "github.com/yanosea/mindnum/infrastructure/text/repository"
-        "github.com/yanosea/mindnum/presentation/cli/formatter"
+        mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
+        mindnumRepo "github.com/yanosea/mindnum/app/infrastructure/text/repository"
+        "github.com/yanosea/mindnum/app/presentation/cli/formatter"
 
-        "github.com/yanosea/mindnum-pkg/proxy"
+        "github.com/yanosea/mindnum/pkg/proxy"
 )
 
 var (
@@ -514,15 +383,15 @@ Arguments:
 )
 </pre>
 		
-		<pre class="file" id="file9" style="display: none">package mindnum
+		<pre class="file" id="file6" style="display: none">package mindnum
 
 import (
         c "github.com/spf13/cobra"
 
-        mindnumApp "github.com/yanosea/mindnum/application/mindnum"
-        "github.com/yanosea/mindnum/presentation/cli/formatter"
+        mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
+        "github.com/yanosea/mindnum/app/presentation/cli/formatter"
 
-        "github.com/yanosea/mindnum-pkg/proxy"
+        "github.com/yanosea/mindnum/pkg/proxy"
 )
 
 func NewVersionCommand(
@@ -573,12 +442,12 @@ Flags:
 )
 </pre>
 		
-		<pre class="file" id="file10" style="display: none">package command
+		<pre class="file" id="file7" style="display: none">package command
 
 import (
-        "github.com/yanosea/mindnum/presentation/cli/command/mindnum"
+        "github.com/yanosea/mindnum/app/presentation/cli/command/mindnum"
 
-        "github.com/yanosea/mindnum-pkg/proxy"
+        "github.com/yanosea/mindnum/pkg/proxy"
 )
 
 func NewRootCommand(
@@ -630,12 +499,12 @@ Use "mindnum [command] --help" for more information about a command.
 )
 </pre>
 		
-		<pre class="file" id="file11" style="display: none">package formatter
+		<pre class="file" id="file8" style="display: none">package formatter
 
 import (
         "fmt"
 
-        "github.com/yanosea/mindnum-pkg/errors"
+        "github.com/yanosea/mindnum/pkg/errors"
 )
 
 type Formatter interface {
@@ -679,13 +548,13 @@ func AppendErrorToOutput(err error, output string) string <span class="cov8" tit
 }
 </pre>
 		
-		<pre class="file" id="file12" style="display: none">package formatter
+		<pre class="file" id="file9" style="display: none">package formatter
 
 import (
         "fmt"
         "strings"
 
-        mindnumApp "github.com/yanosea/mindnum/application/mindnum"
+        mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
 )
 
 type TextFormatter struct{}
@@ -713,15 +582,15 @@ func (f *TextFormatter) Format(result interface{}) string <span class="cov8" tit
 }
 </pre>
 		
-		<pre class="file" id="file13" style="display: none">package main
+		<pre class="file" id="file10" style="display: none">package main
 
 import (
         "os"
 
-        "github.com/yanosea/mindnum/presentation/cli/command"
+        "github.com/yanosea/mindnum/app/presentation/cli/command"
 
-        "github.com/yanosea/mindnum-pkg/proxy"
-        "github.com/yanosea/mindnum-pkg/utility"
+        "github.com/yanosea/mindnum/pkg/proxy"
+        "github.com/yanosea/mindnum/pkg/utility"
 )
 
 var (
@@ -740,7 +609,7 @@ func main() <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file14" style="display: none">package presenter
+		<pre class="file" id="file11" style="display: none">package presenter
 
 import (
         "fmt"
@@ -750,6 +619,137 @@ import (
 func Present(writer io.Writer, output string) <span class="cov8" title="1">{
         if output != "" </span><span class="cov8" title="1">{
                 fmt.Fprintf(writer, "%s\n", output)
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file12" style="display: none">package errors
+
+import "fmt"
+
+type wrappedError struct {
+        err error
+        msg string
+}
+
+func (e *wrappedError) Error() string <span class="cov8" title="1">{
+        if e.err == nil &amp;&amp; e.msg == "" </span><span class="cov8" title="1">{
+                return ""
+        }</span> else<span class="cov8" title="1"> if e.err == nil &amp;&amp; e.msg != "" </span><span class="cov8" title="1">{
+                return e.msg
+        }</span> else<span class="cov8" title="1"> if e.err != nil &amp;&amp; e.msg == "" </span><span class="cov8" title="1">{
+                return e.err.Error()
+        }</span> else<span class="cov8" title="1"> {
+                return fmt.Sprintf("%s : %v", e.msg, e.err)
+        }</span>
+}
+
+func New(msg string) error <span class="cov8" title="1">{
+        return &amp;wrappedError{msg: msg}
+}</span>
+
+func Wrap(err error, msg string) error <span class="cov8" title="1">{
+        return &amp;wrappedError{
+                err: err,
+                msg: msg,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file13" style="display: none">package utility
+
+import (
+        "os"
+
+        "github.com/yanosea/mindnum/pkg/proxy"
+)
+
+type Capturable interface {
+}
+
+type Capturer struct {
+        StdBuffer proxy.Buffer
+        ErrBuffer proxy.Buffer
+}
+
+func NewCapturer(
+        sdtBuffer proxy.Buffer,
+        errBuffer proxy.Buffer,
+) *Capturer <span class="cov8" title="1">{
+        return &amp;Capturer{
+                StdBuffer: sdtBuffer,
+                ErrBuffer: errBuffer,
+        }
+}</span>
+
+func (c *Capturer) CaptureOutput(fnc func()) (string, string, error) <span class="cov8" title="1">{
+        origStdout := os.Stdout
+        origStderr := os.Stderr
+        defer func() </span><span class="cov8" title="1">{
+                os.Stdout = origStdout
+                os.Stderr = origStderr
+        }</span>()
+
+        <span class="cov8" title="1">rOut, wOut, _ := os.Pipe()
+        rErr, wErr, _ := os.Pipe()
+        os.Stdout = wOut
+        os.Stderr = wErr
+
+        fnc()
+
+        wOut.Close()
+        wErr.Close()
+
+        if _, err := c.StdBuffer.ReadFrom(rOut); err != nil </span><span class="cov8" title="1">{
+                return "", "", err
+        }</span>
+
+        <span class="cov8" title="1">if _, err := c.ErrBuffer.ReadFrom(rErr); err != nil </span><span class="cov8" title="1">{
+                return "", "", err
+        }</span>
+
+        <span class="cov8" title="1">stdout := c.StdBuffer.String()
+        errout := c.ErrBuffer.String()
+
+        c.StdBuffer.Reset()
+        c.ErrBuffer.Reset()
+
+        return stdout, errout, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file14" style="display: none">package utility
+
+import (
+        "github.com/yanosea/mindnum/pkg/proxy"
+)
+
+type VersionUtil interface {
+        GetVersion(version string) string
+}
+
+type versionUtil struct {
+        Debug proxy.Debug
+}
+
+func NewVersionUtil(
+        debug proxy.Debug,
+) VersionUtil <span class="cov8" title="1">{
+        return &amp;versionUtil{
+                Debug: debug,
+        }
+}</span>
+
+func (v *versionUtil) GetVersion(version string) string <span class="cov8" title="1">{
+        // if version is embedded, return it
+        if version != "" </span><span class="cov8" title="1">{
+                return version
+        }</span>
+
+        <span class="cov8" title="1">if i, ok := v.Debug.ReadBuildInfo(); !ok </span><span class="cov8" title="1">{
+                return "unknown"
+        }</span> else<span class="cov8" title="1"> {
+                return i.Main.Version
         }</span>
 }
 </pre>

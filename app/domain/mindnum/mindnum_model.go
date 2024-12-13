@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/yanosea/mindnum-pkg/errors"
+	"github.com/yanosea/mindnum/pkg/errors"
 )
 
 type Mindnum struct {

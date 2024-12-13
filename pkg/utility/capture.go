@@ -3,7 +3,7 @@ package utility
 import (
 	"os"
 
-	"github.com/yanosea/mindnum-pkg/proxy"
+	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
 type Capturable interface {

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"path/filepath"
 
-	mindnumDomain "github.com/yanosea/mindnum/domain/mindnum"
+	mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
 
-	"github.com/yanosea/mindnum-pkg/errors"
+	"github.com/yanosea/mindnum/pkg/errors"
 )
 
 type mindnumRepository struct {
