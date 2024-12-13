@@ -1,0 +1,51 @@
+# config
+[config]
+skip_core_tasks = true
+# update
+## `./CREDITS`
+[tasks."update.credits"]
+description = "update `./CREDITS`"
+script = '''
+gocredits -skip-missing ./app > ./CREDITS
+gocredits -skip-missing ./pkg >> ./CREDITS
+'''
+## mocks
+[tasks."update.mocks"]
+description = "update mocks"
+script = '''
+# ./app
+mockgen -source=./app/domain/mindnum/mindnum_repository.go -destination=./app/domain/mindnum/mindnum_repository_mock.go -package=mindnum
+# ./pkg
+mockgen -source=./pkg/proxy/buffer.go -destination=./pkg/proxy/buffer_mock.go -package=proxy
+mockgen -source=./pkg/proxy/cobra.go -destination=./pkg/proxy/cobra_mock.go -package=proxy
+mockgen -source=./pkg/proxy/debug.go -destination=./pkg/proxy/debug_mock.go -package=proxy
+mockgen -source=./pkg/proxy/pflag.go -destination=./pkg/proxy/pflag_mock.go -package=proxy
+'''
+
+# test
+[tasks."test"]
+description = "execute tests"
+script = '''
+# test app
+cd ./app
+go test -v -p 1 ./... -cover -coverprofile=./app_cover.out
+cd ..
+# test pkg
+cd ./pkg
+go test -v -p 1 ./... -cover -coverprofile=../app/pkg_cover.out
+cd ..
+# merge coverage reports
+cd ./app
+gocovmerge ./app_cover.out ./pkg_cover.out > ./cover.out
+cd ..
+# remove proxies and mocks from coverage report
+cd ./app
+awk '!/(proxy|_mock)/' ./cover.out > temp_cover.out && mv temp_cover.out cover.out
+cd ..
+# generate HTML report
+cd ./app
+go tool cover -html=./cover.out -o ../docs/coverage.html
+cd ..
+# clean up
+rm ./app/app_cover.out ./app/pkg_cover.out ./app/cover.out
+'''

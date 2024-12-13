@@ -1,5 +1,5 @@
-# ignore folders
-dist/
-
-# ignore files
-mindnum
+# IGNORE DIRECTORY
+# IGNORE FILE
+app/presentation/cli/cli
+.DS_Store
+*.log
