@@ -216,39 +216,43 @@ func GetMindNumber(birthday string) (int, error) <span class="cov8" title="1">{
 		<pre class="file" id="file3" style="display: none">package repository
 
 import (
-        "fmt"
-        "path/filepath"
-
         mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
 
         "github.com/yanosea/mindnum/pkg/errors"
 )
 
-type mindnumRepository struct {
-        DescriptionPath string
-}
+type mindnumRepository struct{}
 
-func NewMindnumRepository(descriptionPath string) mindnumDomain.MindnumRepository <span class="cov8" title="1">{
-        if descriptionPath == "" </span><span class="cov8" title="1">{
-                descriptionPath = mindnumDomain.DescriptionPath
-        }</span>
-        <span class="cov8" title="1">return &amp;mindnumRepository{
-                DescriptionPath: descriptionPath,
-        }</span>
-}
+func NewMindnumRepository() mindnumDomain.MindnumRepository <span class="cov8" title="1">{
+        return &amp;mindnumRepository{}
+}</span>
 
 func (r *mindnumRepository) FindByNumber(number int) (*mindnumDomain.Mindnum, error) <span class="cov8" title="1">{
-        if number &lt; 1 || 9 &lt; number </span><span class="cov8" title="1">{
-                return nil, errors.New("number out of range")
-        }</span>
-        <span class="cov8" title="1">fileName := fmt.Sprintf("%d.txt", number)
+        var description string
+        switch number </span>{
+        case 1:<span class="cov8" title="1">
+                description = DescriptionOne</span>
+        case 2:<span class="cov8" title="1">
+                description = DescriptionTwo</span>
+        case 3:<span class="cov8" title="1">
+                description = DescriptionThree</span>
+        case 4:<span class="cov8" title="1">
+                description = DescriptionFour</span>
+        case 5:<span class="cov8" title="1">
+                description = DescriptionFive</span>
+        case 6:<span class="cov8" title="1">
+                description = DescriptionSix</span>
+        case 7:<span class="cov8" title="1">
+                description = DescriptionSeven</span>
+        case 8:<span class="cov8" title="1">
+                description = DescriptionEight</span>
+        case 9:<span class="cov8" title="1">
+                description = DescriptionNine</span>
+        default:<span class="cov8" title="1">
+                return nil, errors.New("number out of range")</span>
+        }
 
-        description, err := mindnumDomain.Embedded.ReadFile(filepath.Join(r.DescriptionPath, fileName))
-        if err != nil </span><span class="cov8" title="1">{
-                return nil, err
-        }</span>
-
-        <span class="cov8" title="1">return mindnumDomain.NewMindnum(number, string(description))</span>
+        <span class="cov8" title="1">return mindnumDomain.NewMindnum(number, description)</span>
 }
 </pre>
 		
@@ -348,7 +352,7 @@ func runGet(birthday *string, format *string, output *string, args []string) err
                 *birthday = args[0]
         }</span>
 
-        <span class="cov8" title="1">mindnumRepo := mindnumRepo.NewMindnumRepository("")
+        <span class="cov8" title="1">mindnumRepo := mindnumRepo.NewMindnumRepository()
         uc := mindnumApp.NewGetMindnumUseCase(mindnumRepo)
         dto, err := uc.Run(*birthday)
         if err != nil </span><span class="cov8" title="1">{

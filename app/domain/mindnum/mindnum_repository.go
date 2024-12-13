@@ -1,14 +1,6 @@
 package mindnum
 
-import (
-	"embed"
-)
-
-var (
-	//go:embed descriptions/*
-	Embedded        embed.FS
-	DescriptionPath = "descriptions"
-)
+import ()
 
 type MindnumRepository interface {
 	FindByNumber(number int) (*Mindnum, error)

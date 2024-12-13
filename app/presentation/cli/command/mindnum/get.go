@@ -44,7 +44,7 @@ func runGet(birthday *string, format *string, output *string, args []string) err
 		*birthday = args[0]
 	}
 
-	mindnumRepo := mindnumRepo.NewMindnumRepository("")
+	mindnumRepo := mindnumRepo.NewMindnumRepository()
 	uc := mindnumApp.NewGetMindnumUseCase(mindnumRepo)
 	dto, err := uc.Run(*birthday)
 	if err != nil {
