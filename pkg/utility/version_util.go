@@ -28,7 +28,9 @@ func (v *versionUtil) GetVersion(version string) string {
 
 	if i, ok := v.Debug.ReadBuildInfo(); !ok {
 		return "unknown"
-	} else {
+	} else if i.Main.Version != "" {
 		return i.Main.Version
+	} else {
+		return "dev"
 	}
 }
