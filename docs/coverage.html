@@ -103,10 +103,12 @@ import (
         mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
 )
 
+// GetMindnumUseCase is a struct that provides the use case of getting a mind number.
 type GetMindnumUseCase struct {
         mindnumRepo mindnumDomain.MindnumRepository
 }
 
+// NewGetMindnumUseCase returns a new instance of the GetMindnumUseCase struct.
 func NewGetMindnumUseCase(
         mindnumRepo mindnumDomain.MindnumRepository,
 ) *GetMindnumUseCase <span class="cov8" title="1">{
@@ -115,11 +117,13 @@ func NewGetMindnumUseCase(
         }
 }</span>
 
+// GetMindnumUsecaseOutputDto is a struct that provides the output DTO of the GetMindnumUseCase struct.
 type GetMindnumUsecaseOutputDto struct {
         MindNumber  int
         Description string
 }
 
+// Run returns the output of the GetMindnumUseCase struct.
 func (uc *GetMindnumUseCase) Run(birthday string) (*GetMindnumUsecaseOutputDto, error) <span class="cov8" title="1">{
         mindNumber, err := mindnumDomain.GetMindNumber(birthday)
         if err != nil </span><span class="cov8" title="1">{
@@ -142,16 +146,20 @@ func (uc *GetMindnumUseCase) Run(birthday string) (*GetMindnumUsecaseOutputDto, 
 
 import ()
 
+// VersionUseCase is a struct that contains the use case of the version.
 type VersionUseCase struct{}
 
+// NewVersionUseCase returns a new instance of the VersionUseCase struct.
 func NewVersionUseCase() *VersionUseCase <span class="cov8" title="1">{
         return &amp;VersionUseCase{}
 }</span>
 
+// VersionUsecaseOutputDto is a DTO struct that contains the output data of the VersionUseCase.
 type VersionUsecaseOutputDto struct {
         Version string
 }
 
+// Run returns the output of the VersionUseCase.
 func (uc *VersionUseCase) Run(version string) *VersionUsecaseOutputDto <span class="cov8" title="1">{
         return &amp;VersionUsecaseOutputDto{
                 Version: version,
@@ -169,11 +177,13 @@ import (
         "github.com/yanosea/mindnum/pkg/errors"
 )
 
+// Mindnum is a struct that represents a mind number and its description.
 type Mindnum struct {
         MindNumber  int
         Description string
 }
 
+// NewMindnum returns a new instance of the Mindnum struct.
 func NewMindnum(mindNumber int, description string) (*Mindnum, error) <span class="cov8" title="1">{
         if mindNumber &lt; 1 || 9 &lt; mindNumber </span><span class="cov8" title="1">{
                 return nil, errors.New("mind number out of range")
@@ -184,6 +194,7 @@ func NewMindnum(mindNumber int, description string) (*Mindnum, error) <span clas
         }, nil</span>
 }
 
+// GetMindNumber returns a mind number from a birthday.
 func GetMindNumber(birthday string) (int, error) <span class="cov8" title="1">{
         if birthday == "" </span><span class="cov8" title="1">{
                 return 0, errors.New("birthday is required")
@@ -221,12 +232,15 @@ import (
         "github.com/yanosea/mindnum/pkg/errors"
 )
 
+// mindnumRepository is a struct that implements the MindnumRepository interface.
 type mindnumRepository struct{}
 
+// NewMindnumRepository returns a new instance of the mindnumRepository struct.
 func NewMindnumRepository() mindnumDomain.MindnumRepository <span class="cov8" title="1">{
         return &amp;mindnumRepository{}
 }</span>
 
+// FindByNumber returns a mindnum by number.
 func (r *mindnumRepository) FindByNumber(number int) (*mindnumDomain.Mindnum, error) <span class="cov8" title="1">{
         var description string
         switch number </span>{
@@ -267,6 +281,7 @@ import (
         "github.com/yanosea/mindnum/pkg/proxy"
 )
 
+// Cli is a struct that represents the command line interface of mindnum cli.
 type Cli struct {
         Cobra       proxy.Cobra
         Version     string
@@ -274,10 +289,13 @@ type Cli struct {
 }
 
 var (
+        // output is the output string
         output string
+        // format is the format of the output
         format = "text"
 )
 
+// NewCli returns a new instance of the Cli struct.
 func NewCli(
         cobra proxy.Cobra,
         version string,
@@ -290,6 +308,7 @@ func NewCli(
         }
 }</span>
 
+// Run runs the command line interface of mindnum cli.
 func (c *Cli) Run() int <span class="cov8" title="1">{
         out := os.Stdout
         exitCode := 0
@@ -319,9 +338,11 @@ import (
 )
 
 var (
+        // birthday is the receiver of the birthday flag
         birthday string
 )
 
+// NewGetCommand returns a new instance of the get command.
 func NewGetCommand(
         cobra proxy.Cobra,
         format *string,
@@ -348,6 +369,7 @@ func NewGetCommand(
         <span class="cov8" title="1">return cmd</span>
 }
 
+// runGet runs the get command.
 func runGet(birthday *string, format *string, output *string, args []string) error <span class="cov8" title="1">{
         if len(args) &gt; 0 </span><span class="cov8" title="1">{
                 *birthday = args[0]
@@ -373,9 +395,11 @@ func runGet(birthday *string, format *string, output *string, args []string) err
 }
 
 const (
+        // getHelpTemplate is the help template of the get command.
         getHelpTemplate = `🧠 Get a mind number from an argument or the birthday flag and show the personality description
 
 ` + getUsageTemplate
+        // getUsageTemplate is the usage template of the get command.
         getUsageTemplate = `Usage:
   mindnum get [birthday (optional)] [flags]
 
@@ -400,6 +424,7 @@ import (
         "github.com/yanosea/mindnum/pkg/proxy"
 )
 
+// NewVersionCommand returns a new instance of the version command.
 func NewVersionCommand(
         cobra proxy.Cobra,
         version string,
@@ -421,6 +446,7 @@ func NewVersionCommand(
         <span class="cov8" title="1">return cmd</span>
 }
 
+// runVersion runs the version command.
 func runVersion(version string, format *string, output *string) error <span class="cov8" title="1">{
         uc := mindnumApp.NewVersionUseCase()
         dto := uc.Run(version)
@@ -438,9 +464,11 @@ func runVersion(version string, format *string, output *string) error <span clas
 }
 
 const (
+        // versionHelpTemplate is the help template of the version command.
         versionHelpTemplate = `🔖 Show the version of mindnum
 
 ` + versionUsageTemplate
+        // versionUsageTemplate is the usage template of the version command.
         versionUsageTemplate = `Usage:
   mindnum version [flags]
 
@@ -458,6 +486,7 @@ import (
         "github.com/yanosea/mindnum/pkg/proxy"
 )
 
+// NewRootCommand returns a new instance of the root command.
 func NewRootCommand(
         cobra proxy.Cobra,
         version string,
@@ -488,9 +517,11 @@ func NewRootCommand(
 }</span>
 
 const (
+        // rootHelpTemplate is the help template of the root command.
         rootHelpTemplate = `🧠 mindnum is a CLI tool to get the mind number from the birthday
 
 ` + rootUsageTemplate
+        // rootUsageTemplate is the usage template of the root command.
         rootUsageTemplate = `Usage:
   mindnum [command]
 
@@ -517,10 +548,12 @@ import (
         "github.com/yanosea/mindnum/pkg/errors"
 )
 
+// Formatter is an interface that formats the output of mindnum cli.
 type Formatter interface {
         Format(result interface{}) string
 }
 
+// NewFormatter returns a new instance of the Formatter interface.
 func NewFormatter(
         format string,
 ) (Formatter, error) <span class="cov8" title="1">{
@@ -534,6 +567,7 @@ func NewFormatter(
         <span class="cov8" title="1">return f, nil</span>
 }
 
+// AppendErrorToOutput appends an error to the output.
 func AppendErrorToOutput(err error, output string) string <span class="cov8" title="1">{
         if err == nil &amp;&amp; output == "" </span><span class="cov8" title="1">{
                 return ""
@@ -567,12 +601,15 @@ import (
         mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
 )
 
+// TextFormatter is a struct that formats the output of mindnum cli.
 type TextFormatter struct{}
 
+// NewTextFormatter returns a new instance of the TextFormatter struct.
 func NewTextFormatter() *TextFormatter <span class="cov8" title="1">{
         return &amp;TextFormatter{}
 }</span>
 
+// Format formats the output of mindnum cli.
 func (f *TextFormatter) Format(result interface{}) string <span class="cov8" title="1">{
         var formatted string
         switch v := result.(type) </span>{
@@ -604,12 +641,17 @@ import (
 )
 
 var (
-        version     = ""
-        cobra       = proxy.NewCobra()
+        // version is the version of mindnum cli.
+        version = ""
+        // cobra is a proxy of spf13/cobra.
+        cobra = proxy.NewCobra()
+        // versionUtil is a provider of the version of the application.
         versionUtil = utility.NewVersionUtil(proxy.NewDebug())
-        exit        = os.Exit
+        // exit is a proxy of os.Exit.
+        exit = os.Exit
 )
 
+// main is the entry point of mindnum cli.
 func main() <span class="cov8" title="1">{
         cli := command.NewCli(
                 cobra,
@@ -626,6 +668,7 @@ import (
         "io"
 )
 
+// Present is a function that writes the output to the writer.
 func Present(writer io.Writer, output string) <span class="cov8" title="1">{
         if output != "" </span><span class="cov8" title="1">{
                 fmt.Fprintf(writer, "%s\n", output)
@@ -637,11 +680,13 @@ func Present(writer io.Writer, output string) <span class="cov8" title="1">{
 
 import "fmt"
 
+// wrappedError is a struct that wraps an error and a message
 type wrappedError struct {
         err error
         msg string
 }
 
+// Error returns the error message formatted as a string
 func (e *wrappedError) Error() string <span class="cov8" title="1">{
         if e.err == nil &amp;&amp; e.msg == "" </span><span class="cov8" title="1">{
                 return ""
@@ -654,10 +699,12 @@ func (e *wrappedError) Error() string <span class="cov8" title="1">{
         }</span>
 }
 
+// New returns a new error with the given message
 func New(msg string) error <span class="cov8" title="1">{
         return &amp;wrappedError{msg: msg}
 }</span>
 
+// Wrap returns a new error that wraps the given error with the given message
 func Wrap(err error, msg string) error <span class="cov8" title="1">{
         return &amp;wrappedError{
                 err: err,
@@ -674,25 +721,32 @@ import (
         "github.com/yanosea/mindnum/pkg/proxy"
 )
 
+// Capturable is an interface that captures the output of a function.
 type Capturable interface {
+        CaptureOutput(fnc func()) (string, string, error)
 }
 
-type Capturer struct {
+// capturer is a struct that implements the Capturable interface.
+type capturer struct {
+        // StdBuffer is a buffer for standard output.
         StdBuffer proxy.Buffer
+        // ErrBuffer is a buffer for error output.
         ErrBuffer proxy.Buffer
 }
 
+// NewCapturer returns a new instance of the capturer struct.
 func NewCapturer(
         sdtBuffer proxy.Buffer,
         errBuffer proxy.Buffer,
-) *Capturer <span class="cov8" title="1">{
-        return &amp;Capturer{
+) *capturer <span class="cov8" title="1">{
+        return &amp;capturer{
                 StdBuffer: sdtBuffer,
                 ErrBuffer: errBuffer,
         }
 }</span>
 
-func (c *Capturer) CaptureOutput(fnc func()) (string, string, error) <span class="cov8" title="1">{
+// CaptureOutput captures the output of a function.
+func (c *capturer) CaptureOutput(fnc func()) (string, string, error) <span class="cov8" title="1">{
         origStdout := os.Stdout
         origStderr := os.Stderr
         defer func() </span><span class="cov8" title="1">{
@@ -734,14 +788,17 @@ import (
         "github.com/yanosea/mindnum/pkg/proxy"
 )
 
+// VersionUtil is an interface that provides the version of the application.
 type VersionUtil interface {
         GetVersion(version string) string
 }
 
+// versionUtil is a struct that implements the VersionUtil interface.
 type versionUtil struct {
         Debug proxy.Debug
 }
 
+// NewVersionUtil returns a new instance of the versionUtil struct.
 func NewVersionUtil(
         debug proxy.Debug,
 ) VersionUtil <span class="cov8" title="1">{
@@ -750,6 +807,7 @@ func NewVersionUtil(
         }
 }</span>
 
+// GetVersion returns the version of the application.
 func (v *versionUtil) GetVersion(version string) string <span class="cov8" title="1">{
         // if version is embedded, return it
         if version != "" </span><span class="cov8" title="1">{
@@ -758,8 +816,10 @@ func (v *versionUtil) GetVersion(version string) string <span class="cov8" title
 
         <span class="cov8" title="1">if i, ok := v.Debug.ReadBuildInfo(); !ok </span><span class="cov8" title="1">{
                 return "unknown"
-        }</span> else<span class="cov8" title="1"> {
+        }</span> else<span class="cov8" title="1"> if i.Main.Version != "" </span><span class="cov8" title="1">{
                 return i.Main.Version
+        }</span> else<span class="cov8" title="1"> {
+                return "dev"
         }</span>
 }
 </pre>
