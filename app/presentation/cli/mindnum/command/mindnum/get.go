@@ -22,6 +22,7 @@ func NewGetCommand(
 	cmd := cobra.NewCommand()
 	cmd.SetSilenceErrors(true)
 	cmd.SetUse("get [birthday (optional)]")
+	cmd.SetUsageTemplate(getUsageTemplate)
 	cmd.SetHelpTemplate(getHelpTemplate)
 	cmd.PersistentFlags().StringVarP(
 		&birthday,
@@ -66,7 +67,8 @@ func runGet(birthday *string, format *string, output *string, args []string) err
 const (
 	getHelpTemplate = `🧠 Get a mind number from an argument or the birthday flag and show the personality description
 
-Usage:
+` + getUsageTemplate
+	getUsageTemplate = `Usage:
   mindnum get [birthday (optional)] [flags]
 
 Flags:
