@@ -6,12 +6,15 @@ import (
 	"github.com/yanosea/mindnum/pkg/errors"
 )
 
+// mindnumRepository is a struct that implements the MindnumRepository interface.
 type mindnumRepository struct{}
 
+// NewMindnumRepository returns a new instance of the mindnumRepository struct.
 func NewMindnumRepository() mindnumDomain.MindnumRepository {
 	return &mindnumRepository{}
 }
 
+// FindByNumber returns a mindnum by number.
 func (r *mindnumRepository) FindByNumber(number int) (*mindnumDomain.Mindnum, error) {
 	var description string
 	switch number {

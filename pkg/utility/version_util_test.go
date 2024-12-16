@@ -66,7 +66,25 @@ func Test_versionUtil_GetVersion(t *testing.T) {
 			setup: nil,
 		},
 		{
-			name: "positive case (version is empty, debug.ReadBuildInfo() returns true)",
+			name: "positive case (version is empty, debug.ReadBuildInfo() returns false)",
+			fields: fields{
+				debug: nil,
+			},
+			args: args{
+				version: "",
+			},
+			want: "unknown",
+			setup: func(mockCtrl *gomock.Controller, tt *fields) {
+				mockDebug := proxy.NewMockDebug(mockCtrl)
+				mockDebug.EXPECT().ReadBuildInfo().Return(
+					&debug.BuildInfo{},
+					false,
+				)
+				tt.debug = mockDebug
+			},
+		},
+		{
+			name: "positive case (version is empty, debug.ReadBuildInfo() returns true and i.Main.Version is not empty)",
 			fields: fields{
 				debug: nil,
 			},
@@ -87,20 +105,25 @@ func Test_versionUtil_GetVersion(t *testing.T) {
 				tt.debug = mockDebug
 			},
 		},
+
 		{
-			name: "positive case (version is empty, debug.ReadBuildInfo() returns false)",
+			name: "positive case (version is empty, debug.ReadBuildInfo() returns true, i.Main.Version is empty)",
 			fields: fields{
 				debug: nil,
 			},
 			args: args{
 				version: "",
 			},
-			want: "unknown",
+			want: "dev",
 			setup: func(mockCtrl *gomock.Controller, tt *fields) {
 				mockDebug := proxy.NewMockDebug(mockCtrl)
 				mockDebug.EXPECT().ReadBuildInfo().Return(
-					&debug.BuildInfo{},
-					false,
+					&debug.BuildInfo{
+						Main: debug.Module{
+							Version: "",
+						},
+					},
+					true,
 				)
 				tt.debug = mockDebug
 			},

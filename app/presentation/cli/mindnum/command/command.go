@@ -9,6 +9,7 @@ import (
 	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
+// Cli is a struct that represents the command line interface of mindnum cli.
 type Cli struct {
 	Cobra       proxy.Cobra
 	Version     string
@@ -16,10 +17,13 @@ type Cli struct {
 }
 
 var (
+	// output is the output string
 	output string
+	// format is the format of the output
 	format = "text"
 )
 
+// NewCli returns a new instance of the Cli struct.
 func NewCli(
 	cobra proxy.Cobra,
 	version string,
@@ -32,6 +36,7 @@ func NewCli(
 	}
 }
 
+// Run runs the command line interface of mindnum cli.
 func (c *Cli) Run() int {
 	out := os.Stdout
 	exitCode := 0

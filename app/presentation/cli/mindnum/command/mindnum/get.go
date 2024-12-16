@@ -11,9 +11,11 @@ import (
 )
 
 var (
+	// birthday is the receiver of the birthday flag
 	birthday string
 )
 
+// NewGetCommand returns a new instance of the get command.
 func NewGetCommand(
 	cobra proxy.Cobra,
 	format *string,
@@ -40,6 +42,7 @@ func NewGetCommand(
 	return cmd
 }
 
+// runGet runs the get command.
 func runGet(birthday *string, format *string, output *string, args []string) error {
 	if len(args) > 0 {
 		*birthday = args[0]
@@ -65,9 +68,11 @@ func runGet(birthday *string, format *string, output *string, args []string) err
 }
 
 const (
+	// getHelpTemplate is the help template of the get command.
 	getHelpTemplate = `🧠 Get a mind number from an argument or the birthday flag and show the personality description
 
 ` + getUsageTemplate
+	// getUsageTemplate is the usage template of the get command.
 	getUsageTemplate = `Usage:
   mindnum get [birthday (optional)] [flags]
 

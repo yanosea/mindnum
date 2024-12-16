@@ -8,11 +8,13 @@ import (
 	"github.com/yanosea/mindnum/pkg/errors"
 )
 
+// Mindnum is a struct that represents a mind number and its description.
 type Mindnum struct {
 	MindNumber  int
 	Description string
 }
 
+// NewMindnum returns a new instance of the Mindnum struct.
 func NewMindnum(mindNumber int, description string) (*Mindnum, error) {
 	if mindNumber < 1 || 9 < mindNumber {
 		return nil, errors.New("mind number out of range")
@@ -23,6 +25,7 @@ func NewMindnum(mindNumber int, description string) (*Mindnum, error) {
 	}, nil
 }
 
+// GetMindNumber returns a mind number from a birthday.
 func GetMindNumber(birthday string) (int, error) {
 	if birthday == "" {
 		return 0, errors.New("birthday is required")

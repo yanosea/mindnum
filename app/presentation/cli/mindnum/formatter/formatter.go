@@ -6,10 +6,12 @@ import (
 	"github.com/yanosea/mindnum/pkg/errors"
 )
 
+// Formatter is an interface that formats the output of mindnum cli.
 type Formatter interface {
 	Format(result interface{}) string
 }
 
+// NewFormatter returns a new instance of the Formatter interface.
 func NewFormatter(
 	format string,
 ) (Formatter, error) {
@@ -23,6 +25,7 @@ func NewFormatter(
 	return f, nil
 }
 
+// AppendErrorToOutput appends an error to the output.
 func AppendErrorToOutput(err error, output string) string {
 	if err == nil && output == "" {
 		return ""

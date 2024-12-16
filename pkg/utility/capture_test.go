@@ -23,7 +23,7 @@ func TestNew(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want *Capturer
+		want *capturer
 	}{
 		{
 			name: "positive case",
@@ -31,7 +31,7 @@ func TestNew(t *testing.T) {
 				sdtBuffer: stdBuffer,
 				errBuffer: errBuffer,
 			},
-			want: &Capturer{
+			want: &capturer{
 				StdBuffer: stdBuffer,
 				ErrBuffer: errBuffer,
 			},
@@ -136,7 +136,7 @@ func TestCapturer_CaptureOutput(t *testing.T) {
 			if tt.setup != nil {
 				tt.setup(mockCtrl, &tt.fields)
 			}
-			c := &Capturer{
+			c := &capturer{
 				StdBuffer: tt.fields.StdBuffer,
 				ErrBuffer: tt.fields.ErrBuffer,
 			}
