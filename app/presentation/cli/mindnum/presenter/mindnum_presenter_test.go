@@ -16,7 +16,7 @@ func TestPresent(t *testing.T) {
 
 	type fields struct {
 		fnc      func()
-		capturer *utility.Capturer
+		capturer utility.Capturable
 	}
 	tests := []struct {
 		name       string

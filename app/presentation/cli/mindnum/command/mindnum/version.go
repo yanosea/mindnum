@@ -9,6 +9,7 @@ import (
 	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
+// NewVersionCommand returns a new instance of the version command.
 func NewVersionCommand(
 	cobra proxy.Cobra,
 	version string,
@@ -30,6 +31,7 @@ func NewVersionCommand(
 	return cmd
 }
 
+// runVersion runs the version command.
 func runVersion(version string, format *string, output *string) error {
 	uc := mindnumApp.NewVersionUseCase()
 	dto := uc.Run(version)
@@ -47,9 +49,11 @@ func runVersion(version string, format *string, output *string) error {
 }
 
 const (
+	// versionHelpTemplate is the help template of the version command.
 	versionHelpTemplate = `🔖 Show the version of mindnum
 
 ` + versionUsageTemplate
+	// versionUsageTemplate is the usage template of the version command.
 	versionUsageTemplate = `Usage:
   mindnum version [flags]
 

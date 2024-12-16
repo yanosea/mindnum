@@ -6,25 +6,32 @@ import (
 	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
+// Capturable is an interface that captures the output of a function.
 type Capturable interface {
+	CaptureOutput(fnc func()) (string, string, error)
 }
 
-type Capturer struct {
+// capturer is a struct that implements the Capturable interface.
+type capturer struct {
+	// StdBuffer is a buffer for standard output.
 	StdBuffer proxy.Buffer
+	// ErrBuffer is a buffer for error output.
 	ErrBuffer proxy.Buffer
 }
 
+// NewCapturer returns a new instance of the capturer struct.
 func NewCapturer(
 	sdtBuffer proxy.Buffer,
 	errBuffer proxy.Buffer,
-) *Capturer {
-	return &Capturer{
+) *capturer {
+	return &capturer{
 		StdBuffer: sdtBuffer,
 		ErrBuffer: errBuffer,
 	}
 }
 
-func (c *Capturer) CaptureOutput(fnc func()) (string, string, error) {
+// CaptureOutput captures the output of a function.
+func (c *capturer) CaptureOutput(fnc func()) (string, string, error) {
 	origStdout := os.Stdout
 	origStderr := os.Stderr
 	defer func() {

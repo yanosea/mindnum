@@ -2,11 +2,13 @@ package errors
 
 import "fmt"
 
+// wrappedError is a struct that wraps an error and a message
 type wrappedError struct {
 	err error
 	msg string
 }
 
+// Error returns the error message formatted as a string
 func (e *wrappedError) Error() string {
 	if e.err == nil && e.msg == "" {
 		return ""
@@ -19,10 +21,12 @@ func (e *wrappedError) Error() string {
 	}
 }
 
+// New returns a new error with the given message
 func New(msg string) error {
 	return &wrappedError{msg: msg}
 }
 
+// Wrap returns a new error that wraps the given error with the given message
 func Wrap(err error, msg string) error {
 	return &wrappedError{
 		err: err,

@@ -7,12 +7,15 @@ import (
 	mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
 )
 
+// TextFormatter is a struct that formats the output of mindnum cli.
 type TextFormatter struct{}
 
+// NewTextFormatter returns a new instance of the TextFormatter struct.
 func NewTextFormatter() *TextFormatter {
 	return &TextFormatter{}
 }
 
+// Format formats the output of mindnum cli.
 func (f *TextFormatter) Format(result interface{}) string {
 	var formatted string
 	switch v := result.(type) {

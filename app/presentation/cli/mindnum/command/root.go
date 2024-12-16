@@ -6,6 +6,7 @@ import (
 	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
+// NewRootCommand returns a new instance of the root command.
 func NewRootCommand(
 	cobra proxy.Cobra,
 	version string,
@@ -36,9 +37,11 @@ func NewRootCommand(
 }
 
 const (
+	// rootHelpTemplate is the help template of the root command.
 	rootHelpTemplate = `🧠 mindnum is a CLI tool to get the mind number from the birthday
 
 ` + rootUsageTemplate
+	// rootUsageTemplate is the usage template of the root command.
 	rootUsageTemplate = `Usage:
   mindnum [command]
 

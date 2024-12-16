@@ -10,12 +10,17 @@ import (
 )
 
 var (
-	version     = ""
-	cobra       = proxy.NewCobra()
+	// version is the version of mindnum cli.
+	version = ""
+	// cobra is a proxy of spf13/cobra.
+	cobra = proxy.NewCobra()
+	// versionUtil is a provider of the version of the application.
 	versionUtil = utility.NewVersionUtil(proxy.NewDebug())
-	exit        = os.Exit
+	// exit is a proxy of os.Exit.
+	exit = os.Exit
 )
 
+// main is the entry point of mindnum cli.
 func main() {
 	cli := command.NewCli(
 		cobra,
