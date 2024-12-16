@@ -15,6 +15,7 @@ func NewRootCommand(
 	cmd := cobra.NewCommand()
 	cmd.SetSilenceErrors(true)
 	cmd.SetUse("mindnum")
+	cmd.SetUsageTemplate(rootUsageTemplate)
 	cmd.SetHelpTemplate(rootHelpTemplate)
 	cmd.SetVersion(version)
 	cmd.AddCommand(
@@ -37,7 +38,8 @@ func NewRootCommand(
 const (
 	rootHelpTemplate = `🧠 mindnum is a CLI tool to get the mind number from the birthday
 
-Usage:
+` + rootUsageTemplate
+	rootUsageTemplate = `Usage:
   mindnum [command]
 
 Available Commands:

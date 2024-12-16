@@ -64,20 +64,8 @@ func TestGetMindnumUseCase_Run(t *testing.T) {
 				birthday: "19900719",
 			},
 			want: &GetMindnumUsecaseOutputDto{
-				MindNumber: 9,
-				Description: `You are a BALANCER.
-
-BALANCER is like...
-The key word in your life is "2".
-You are a person who is destined to have two of everything.
-You may travel back and forth between the country and abroad, have two homes, or be attracted to two people at the same time.
-You have an inquisitive mind and take pleasure in expanding your knowledge in areas you are not familiar with.
-They have a keen intuition and sense of perception,
-so they may feel pain at events they don't feel comfortable with or at relationships that are only superficial.
-Creative workplaces that allow you to express your own opinions are
-more suitable for you than simple work or general office work that does not allow you to feel change.
-You may get double blessings such as pregnancy and childbirth at the same time of marriage.
-`,
+				MindNumber:  9,
+				Description: mindnumRepo.DescriptionNine,
 			},
 			wantErr: false,
 			setup:   nil,

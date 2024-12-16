@@ -298,6 +298,18 @@ func (mr *MockCommandMockRecorder) SetSilenceErrors(silenceErrors any) *gomock.C
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetSilenceErrors", reflect.TypeOf((*MockCommand)(nil).SetSilenceErrors), silenceErrors)
 }
 
+// SetUsageTemplate mocks base method.
+func (m *MockCommand) SetUsageTemplate(s string) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetUsageTemplate", s)
+}
+
+// SetUsageTemplate indicates an expected call of SetUsageTemplate.
+func (mr *MockCommandMockRecorder) SetUsageTemplate(s any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetUsageTemplate", reflect.TypeOf((*MockCommand)(nil).SetUsageTemplate), s)
+}
+
 // SetUse mocks base method.
 func (m *MockCommand) SetUse(use string) {
 	m.ctrl.T.Helper()

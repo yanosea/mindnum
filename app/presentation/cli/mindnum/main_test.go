@@ -4,6 +4,8 @@ import (
 	"os"
 	"testing"
 
+	mindnumRepo "github.com/yanosea/mindnum/app/infrastructure/text/repository"
+
 	"github.com/yanosea/mindnum/pkg/proxy"
 	"github.com/yanosea/mindnum/pkg/utility"
 )
@@ -93,19 +95,7 @@ Use "mindnum [command] --help" for more information about a command.
 			args: []string{"path/to/mindnum", "get", "19900719"},
 			wantStdOut: `Your mind number is 9!
 
-You are a BALANCER.
-
-BALANCER is like...
-The key word in your life is "2".
-You are a person who is destined to have two of everything.
-You may travel back and forth between the country and abroad, have two homes, or be attracted to two people at the same time.
-You have an inquisitive mind and take pleasure in expanding your knowledge in areas you are not familiar with.
-They have a keen intuition and sense of perception,
-so they may feel pain at events they don't feel comfortable with or at relationships that are only superficial.
-Creative workplaces that allow you to express your own opinions are
-more suitable for you than simple work or general office work that does not allow you to feel change.
-You may get double blessings such as pregnancy and childbirth at the same time of marriage.
-`,
+` + mindnumRepo.DescriptionNine,
 			wantStdErr: "",
 			wantErr:    false,
 		},

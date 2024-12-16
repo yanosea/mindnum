@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	version     = ""
+	version     = "dev"
 	cobra       = proxy.NewCobra()
 	versionUtil = utility.NewVersionUtil(proxy.NewDebug())
 	exit        = os.Exit

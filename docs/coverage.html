@@ -330,6 +330,7 @@ func NewGetCommand(
         cmd := cobra.NewCommand()
         cmd.SetSilenceErrors(true)
         cmd.SetUse("get [birthday (optional)]")
+        cmd.SetUsageTemplate(getUsageTemplate)
         cmd.SetHelpTemplate(getHelpTemplate)
         cmd.PersistentFlags().StringVarP(
                 &amp;birthday,
@@ -374,7 +375,8 @@ func runGet(birthday *string, format *string, output *string, args []string) err
 const (
         getHelpTemplate = `🧠 Get a mind number from an argument or the birthday flag and show the personality description
 
-Usage:
+` + getUsageTemplate
+        getUsageTemplate = `Usage:
   mindnum get [birthday (optional)] [flags]
 
 Flags:
@@ -407,6 +409,7 @@ func NewVersionCommand(
         cmd := cobra.NewCommand()
         cmd.SetSilenceErrors(true)
         cmd.SetUse("version")
+        cmd.SetUsageTemplate(versionUsageTemplate)
         cmd.SetHelpTemplate(versionHelpTemplate)
         cmd.SetArgs(cobra.ExactArgs(0))
         cmd.SetRunE(
@@ -437,7 +440,8 @@ func runVersion(version string, format *string, output *string) error <span clas
 const (
         versionHelpTemplate = `🔖 Show the version of mindnum
 
-Usage:
+` + versionUsageTemplate
+        versionUsageTemplate = `Usage:
   mindnum version [flags]
 
 Flags:
@@ -463,6 +467,7 @@ func NewRootCommand(
         cmd := cobra.NewCommand()
         cmd.SetSilenceErrors(true)
         cmd.SetUse("mindnum")
+        cmd.SetUsageTemplate(rootUsageTemplate)
         cmd.SetHelpTemplate(rootHelpTemplate)
         cmd.SetVersion(version)
         cmd.AddCommand(
@@ -485,7 +490,8 @@ func NewRootCommand(
 const (
         rootHelpTemplate = `🧠 mindnum is a CLI tool to get the mind number from the birthday
 
-Usage:
+` + rootUsageTemplate
+        rootUsageTemplate = `Usage:
   mindnum [command]
 
 Available Commands:
@@ -598,7 +604,7 @@ import (
 )
 
 var (
-        version     = ""
+        version     = "dev"
         cobra       = proxy.NewCobra()
         versionUtil = utility.NewVersionUtil(proxy.NewDebug())
         exit        = os.Exit

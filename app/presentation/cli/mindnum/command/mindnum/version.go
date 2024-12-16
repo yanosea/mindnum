@@ -18,6 +18,7 @@ func NewVersionCommand(
 	cmd := cobra.NewCommand()
 	cmd.SetSilenceErrors(true)
 	cmd.SetUse("version")
+	cmd.SetUsageTemplate(versionUsageTemplate)
 	cmd.SetHelpTemplate(versionHelpTemplate)
 	cmd.SetArgs(cobra.ExactArgs(0))
 	cmd.SetRunE(
@@ -48,7 +49,8 @@ func runVersion(version string, format *string, output *string) error {
 const (
 	versionHelpTemplate = `🔖 Show the version of mindnum
 
-Usage:
+` + versionUsageTemplate
+	versionUsageTemplate = `Usage:
   mindnum version [flags]
 
 Flags:

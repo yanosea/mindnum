@@ -56,6 +56,7 @@ type Command interface {
 	SetRunE(runE func(cmd *cobra.Command, args []string) error)
 	SetSilenceErrors(silenceErrors bool)
 	SetUse(use string)
+	SetUsageTemplate(s string)
 	SetVersion(version string)
 }
 
@@ -115,6 +116,10 @@ func (c *commandProxy) SetSilenceErrors(silenceErrors bool) {
 
 func (c *commandProxy) SetUse(use string) {
 	c.Command.Use = use
+}
+
+func (c *commandProxy) SetUsageTemplate(s string) {
+	c.Command.SetUsageTemplate(s)
 }
 
 func (c *commandProxy) SetVersion(version string) {
