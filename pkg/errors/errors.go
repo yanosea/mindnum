@@ -1,6 +1,8 @@
 package errors
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // wrappedError is a struct that wraps an error and a message
 type wrappedError struct {
