@@ -21,11 +21,11 @@ type capturer struct {
 
 // NewCapturer returns a new instance of the capturer struct.
 func NewCapturer(
-	sdtBuffer proxy.Buffer,
+	stdBuffer proxy.Buffer,
 	errBuffer proxy.Buffer,
 ) *capturer {
 	return &capturer{
-		StdBuffer: sdtBuffer,
+		StdBuffer: stdBuffer,
 		ErrBuffer: errBuffer,
 	}
 }
