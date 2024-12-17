@@ -3,7 +3,7 @@ package utility
 import (
 	"errors"
 	"fmt"
-	o "os"
+	"os"
 	"reflect"
 	"testing"
 
@@ -71,8 +71,8 @@ func TestCapturer_CaptureOutput(t *testing.T) {
 			},
 			args: args{
 				fnc: func() {
-					fmt.Fprint(o.Stdout, "stdout")
-					fmt.Fprint(o.Stderr, "stderr")
+					fmt.Fprint(os.Stdout, "stdout")
+					fmt.Fprint(os.Stderr, "stderr")
 				},
 			},
 			wantStdOut: "stdout",
@@ -88,8 +88,8 @@ func TestCapturer_CaptureOutput(t *testing.T) {
 			},
 			args: args{
 				fnc: func() {
-					fmt.Fprint(o.Stdout, "stdout")
-					fmt.Fprint(o.Stderr, "stderr")
+					fmt.Fprint(os.Stdout, "stdout")
+					fmt.Fprint(os.Stderr, "stderr")
 				},
 			},
 			wantStdOut: "",
@@ -112,8 +112,8 @@ func TestCapturer_CaptureOutput(t *testing.T) {
 			},
 			args: args{
 				fnc: func() {
-					fmt.Fprint(o.Stdout, "stdout")
-					fmt.Fprint(o.Stderr, "stderr")
+					fmt.Fprint(os.Stdout, "stdout")
+					fmt.Fprint(os.Stderr, "stderr")
 				},
 			},
 			wantStdOut: "",
