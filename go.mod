@@ -4,8 +4,8 @@ go 1.23
 
 require (
 	github.com/fatih/color v1.18.0
-	github.com/spf13/cobra v1.8.1
-	github.com/spf13/pflag v1.0.5
+	github.com/spf13/cobra v1.9.1
+	github.com/spf13/pflag v1.0.6
 	go.uber.org/mock v0.5.0
 )
 
