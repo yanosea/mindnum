@@ -58,6 +58,7 @@ type Command interface {
 	GetCommand() *cobra.Command
 	PersistentFlags() FlagSet
 	RunE(cmd *cobra.Command, args []string) error
+	SetAliases(aliases []string)
 	SetArgs(positionalArgs PositionalArgs)
 	SetErr(io io.Writer)
 	SetHelpTemplate(s string)
@@ -100,6 +101,11 @@ func (c *commandProxy) PersistentFlags() FlagSet {
 // RunE is a proxy method that calls the RunE method of the cobra.Command.
 func (c *commandProxy) RunE(cmd *cobra.Command, args []string) error {
 	return c.Command.RunE(cmd, args)
+}
+
+// SetAliases is a proxy method that calls the SetAliases method of the cobra.Command.
+func (c *commandProxy) SetAliases(aliases []string) {
+	c.Command.Aliases = aliases
 }
 
 // SetArgs is a proxy method that calls the SetArgs method of the cobra.Command.

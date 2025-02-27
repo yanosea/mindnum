@@ -24,6 +24,7 @@ func NewGetCommand(
 	cmd := cobra.NewCommand()
 	cmd.SetSilenceErrors(true)
 	cmd.SetUse("get [birthday (optional)]")
+	cmd.SetAliases([]string{"gt", "g"})
 	cmd.SetUsageTemplate(getUsageTemplate)
 	cmd.SetHelpTemplate(getHelpTemplate)
 	cmd.PersistentFlags().StringVarP(
@@ -74,7 +75,7 @@ const (
 ` + getUsageTemplate
 	// getUsageTemplate is the usage template of the get command.
 	getUsageTemplate = `Usage:
-  mindnum get [birthday (optional)] [flags]
+  mindnum get [flags] [argument]
 
 Flags:
   -b, --birthday string  🎂 birthday in the format 'yyyyMMdd' (e.g. 19900719) (optional)
