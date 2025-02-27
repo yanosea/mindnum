@@ -214,6 +214,18 @@ func (mr *MockCommandMockRecorder) RunE(cmd, args any) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RunE", reflect.TypeOf((*MockCommand)(nil).RunE), cmd, args)
 }
 
+// SetAliases mocks base method.
+func (m *MockCommand) SetAliases(aliases []string) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetAliases", aliases)
+}
+
+// SetAliases indicates an expected call of SetAliases.
+func (mr *MockCommandMockRecorder) SetAliases(aliases any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetAliases", reflect.TypeOf((*MockCommand)(nil).SetAliases), aliases)
+}
+
 // SetArgs mocks base method.
 func (m *MockCommand) SetArgs(positionalArgs PositionalArgs) {
 	m.ctrl.T.Helper()

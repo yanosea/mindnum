@@ -351,6 +351,7 @@ func NewGetCommand(
         cmd := cobra.NewCommand()
         cmd.SetSilenceErrors(true)
         cmd.SetUse("get [birthday (optional)]")
+        cmd.SetAliases([]string{"gt", "g"})
         cmd.SetUsageTemplate(getUsageTemplate)
         cmd.SetHelpTemplate(getHelpTemplate)
         cmd.PersistentFlags().StringVarP(
@@ -401,7 +402,7 @@ const (
 ` + getUsageTemplate
         // getUsageTemplate is the usage template of the get command.
         getUsageTemplate = `Usage:
-  mindnum get [birthday (optional)] [flags]
+  mindnum get [flags] [argument]
 
 Flags:
   -b, --birthday string  🎂 birthday in the format 'yyyyMMdd' (e.g. 19900719) (optional)
@@ -678,7 +679,9 @@ func Present(writer io.Writer, output string) <span class="cov8" title="1">{
 		
 		<pre class="file" id="file12" style="display: none">package errors
 
-import "fmt"
+import (
+        "fmt"
+)
 
 // wrappedError is a struct that wraps an error and a message
 type wrappedError struct {
@@ -736,11 +739,11 @@ type capturer struct {
 
 // NewCapturer returns a new instance of the capturer struct.
 func NewCapturer(
-        sdtBuffer proxy.Buffer,
+        stdBuffer proxy.Buffer,
         errBuffer proxy.Buffer,
 ) *capturer <span class="cov8" title="1">{
         return &amp;capturer{
-                StdBuffer: sdtBuffer,
+                StdBuffer: stdBuffer,
                 ErrBuffer: errBuffer,
         }
 }</span>
