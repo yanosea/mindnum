@@ -1,9 +1,9 @@
 package formatter
 
 import (
-	"fmt"
+	"errors"
 
-	"github.com/yanosea/mindnum/pkg/errors"
+	"fmt"
 )
 
 // Formatter is an interface that formats the output of mindnum cli.

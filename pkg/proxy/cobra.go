@@ -9,7 +9,6 @@ import (
 // Cobra is an interface that provides a proxy of the methods of cobra
 type Cobra interface {
 	ExactArgs(int) PositionalArgs
-	MaximumNArgs(int) PositionalArgs
 	NewCommand() Command
 }
 
@@ -24,11 +23,6 @@ func NewCobra() Cobra {
 // ExactArgs is a proxy method that calls the ExactArgs method of the cobra.ExactArgs.
 func (*cobraProxy) ExactArgs(n int) PositionalArgs {
 	return &positionalArgsProxy{PositionalArgs: cobra.ExactArgs(n)}
-}
-
-// MaximumNArgs is a proxy method that calls the MaximumNArgs method of the cobra.MaximumNArgs.
-func (*cobraProxy) MaximumNArgs(n int) PositionalArgs {
-	return &positionalArgsProxy{PositionalArgs: cobra.MaximumNArgs(n)}
 }
 
 // NewCommand returns a new instance of the Command interface.

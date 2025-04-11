@@ -6,27 +6,31 @@ import (
 	"github.com/yanosea/mindnum/pkg/proxy"
 )
 
-// Capturable is an interface that captures the output of a function.
-type Capturable interface {
+// Capturer is an interface that captures the output of a function.
+type Capturer interface {
 	CaptureOutput(fnc func()) (string, string, error)
 }
 
-// capturer is a struct that implements the Capturable interface.
+// capturer is a struct that implements the Captures interface.
 type capturer struct {
-	// StdBuffer is a buffer for standard output.
-	StdBuffer proxy.Buffer
-	// ErrBuffer is a buffer for error output.
-	ErrBuffer proxy.Buffer
+	// os is an interface for operating system functions.
+	os proxy.Os
+	// stdBuffer is a buffer for standard output.
+	stdBuffer proxy.Buffer
+	// errBuffer is a buffer for error output.
+	errBuffer proxy.Buffer
 }
 
 // NewCapturer returns a new instance of the capturer struct.
 func NewCapturer(
+	os proxy.Os,
 	stdBuffer proxy.Buffer,
 	errBuffer proxy.Buffer,
 ) *capturer {
 	return &capturer{
-		StdBuffer: stdBuffer,
-		ErrBuffer: errBuffer,
+		os:        os,
+		stdBuffer: stdBuffer,
+		errBuffer: errBuffer,
 	}
 }
 
@@ -39,29 +43,39 @@ func (c *capturer) CaptureOutput(fnc func()) (string, string, error) {
 		os.Stderr = origStderr
 	}()
 
-	rOut, wOut, _ := os.Pipe()
-	rErr, wErr, _ := os.Pipe()
-	os.Stdout = wOut
-	os.Stderr = wErr
+	rOut, wOut, err := c.os.Pipe()
+	if err != nil {
+		return "", "", err
+	}
+	rErr, wErr, err := c.os.Pipe()
+	if err != nil {
+		return "", "", err
+	}
+	os.Stdout = wOut.(interface{ AsOsFile() *os.File }).AsOsFile()
+	os.Stderr = wErr.(interface{ AsOsFile() *os.File }).AsOsFile()
 
 	fnc()
 
-	wOut.Close()
-	wErr.Close()
-
-	if _, err := c.StdBuffer.ReadFrom(rOut); err != nil {
+	if err := wOut.Close(); err != nil {
+		return "", "", err
+	}
+	if err := wErr.Close(); err != nil {
 		return "", "", err
 	}
 
-	if _, err := c.ErrBuffer.ReadFrom(rErr); err != nil {
+	if _, err := c.stdBuffer.ReadFrom(rOut); err != nil {
 		return "", "", err
 	}
 
-	stdout := c.StdBuffer.String()
-	errout := c.ErrBuffer.String()
+	if _, err := c.errBuffer.ReadFrom(rErr); err != nil {
+		return "", "", err
+	}
 
-	c.StdBuffer.Reset()
-	c.ErrBuffer.Reset()
+	stdout := c.stdBuffer.String()
+	errout := c.errBuffer.String()
+
+	c.stdBuffer.Reset()
+	c.errBuffer.Reset()
 
 	return stdout, errout, nil
 }

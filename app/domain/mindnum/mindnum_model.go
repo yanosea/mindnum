@@ -1,11 +1,10 @@
 package mindnum
 
 import (
+	"errors"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/yanosea/mindnum/pkg/errors"
 )
 
 // Mindnum is a struct that represents a mind number and its description.

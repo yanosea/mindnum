@@ -1,9 +1,9 @@
 package repository
 
 import (
-	mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
+	"errors"
 
-	"github.com/yanosea/mindnum/pkg/errors"
+	mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
 )
 
 // mindnumRepository is a struct that implements the MindnumRepository interface.

@@ -14,7 +14,7 @@ type flagSetProxy struct {
 	FlagSet *pflag.FlagSet
 }
 
-// NewFlagSet returns a new instance of the FlagSet interface.
+// StringVarP is a proxy method that calls the StringVarP method of the pflag.FlagSet.
 func (f *flagSetProxy) StringVarP(p *string, name string, shorthand string, value string, usage string) {
 	f.FlagSet.StringVarP(p, name, shorthand, value, usage)
 }
