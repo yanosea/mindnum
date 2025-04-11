@@ -12,6 +12,7 @@ import (
 
 func Test_main(t *testing.T) {
 	capturer := utility.NewCapturer(
+		proxy.NewOs(),
 		proxy.NewBuffer(),
 		proxy.NewBuffer(),
 	)
@@ -24,7 +25,7 @@ func Test_main(t *testing.T) {
 
 	type fields struct {
 		fnc      func()
-		capturer utility.Capturable
+		capturer utility.Capturer
 	}
 	tests := []struct {
 		name       string
@@ -60,6 +61,7 @@ Flags:
   -v, --version  🔖 version for mindnum
 
 Use "mindnum [command] --help" for more information about a command.
+
 `,
 			wantStdErr: "",
 			wantErr:    false,

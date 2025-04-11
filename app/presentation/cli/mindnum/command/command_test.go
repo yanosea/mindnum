@@ -2,8 +2,10 @@ package command
 
 import (
 	"errors"
+	"io"
 	"testing"
 
+	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/presenter"
 	"github.com/yanosea/mindnum/pkg/proxy"
 
 	"go.uber.org/mock/gomock"
@@ -19,7 +21,7 @@ func TestNewCli(t *testing.T) {
 		args args
 	}{
 		{
-			name: "positive case",
+			name: "positive testing",
 			args: args{
 				cobra:   proxy.NewCobra(),
 				version: "v0.0.0",
@@ -37,19 +39,22 @@ func TestNewCli(t *testing.T) {
 }
 
 func TestCli_Run(t *testing.T) {
+	origPrint := presenter.Print
+
 	type fields struct {
 		Cobra       proxy.Cobra
 		Version     string
 		RootCommand proxy.Command
 	}
 	tests := []struct {
-		name   string
-		fields fields
-		want   int
-		setup  func(mockCtrl *gomock.Controller, tt *fields)
+		name    string
+		fields  fields
+		want    int
+		setup   func(mockCtrl *gomock.Controller, tt *fields)
+		cleanup func()
 	}{
 		{
-			name: "positive case",
+			name: "positive testing",
 			fields: fields{
 				Cobra:       proxy.NewCobra(),
 				Version:     "v0.0.0",
@@ -59,7 +64,7 @@ func TestCli_Run(t *testing.T) {
 			setup: nil,
 		},
 		{
-			name: "negative case",
+			name: "negative testing (c.RootCommand.Execute() failed)",
 			fields: fields{
 				Cobra:       proxy.NewCobra(),
 				Version:     "v0.0.0",
@@ -71,6 +76,24 @@ func TestCli_Run(t *testing.T) {
 				mockCommand.EXPECT().Execute().Return(errors.New("test"))
 				tt.RootCommand = mockCommand
 			},
+			cleanup: nil,
+		},
+		{
+			name: "negative testing (presenter.Print failed)",
+			fields: fields{
+				Cobra:       proxy.NewCobra(),
+				Version:     "v0.0.0",
+				RootCommand: NewRootCommand(proxy.NewCobra(), "v0.0.0", &format, &output),
+			},
+			want: 1,
+			setup: func(mockCtrl *gomock.Controller, tt *fields) {
+				presenter.Print = func(writer io.Writer, output string) error {
+					return errors.New("print error")
+				}
+			},
+			cleanup: func() {
+				presenter.Print = origPrint
+			},
 		},
 	}
 	for _, tt := range tests {
@@ -80,6 +103,11 @@ func TestCli_Run(t *testing.T) {
 			if tt.setup != nil {
 				tt.setup(mockCtrl, &tt.fields)
 			}
+			defer func() {
+				if tt.cleanup != nil {
+					tt.cleanup()
+				}
+			}()
 			c := &Cli{
 				Cobra:       tt.fields.Cobra,
 				Version:     tt.fields.Version,

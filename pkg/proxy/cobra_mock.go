@@ -54,20 +54,6 @@ func (mr *MockCobraMockRecorder) ExactArgs(arg0 any) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ExactArgs", reflect.TypeOf((*MockCobra)(nil).ExactArgs), arg0)
 }
 
-// MaximumNArgs mocks base method.
-func (m *MockCobra) MaximumNArgs(arg0 int) PositionalArgs {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "MaximumNArgs", arg0)
-	ret0, _ := ret[0].(PositionalArgs)
-	return ret0
-}
-
-// MaximumNArgs indicates an expected call of MaximumNArgs.
-func (mr *MockCobraMockRecorder) MaximumNArgs(arg0 any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MaximumNArgs", reflect.TypeOf((*MockCobra)(nil).MaximumNArgs), arg0)
-}
-
 // NewCommand mocks base method.
 func (m *MockCobra) NewCommand() Command {
 	m.ctrl.T.Helper()

@@ -77,13 +77,11 @@
 				
 				<option value="file10">github.com/yanosea/mindnum/app/presentation/cli/mindnum/main.go (100.0%)</option>
 				
-				<option value="file11">github.com/yanosea/mindnum/app/presentation/cli/mindnum/presenter/mindnum_presenter.go (100.0%)</option>
+				<option value="file11">github.com/yanosea/mindnum/app/presentation/cli/mindnum/presenter/presenter.go (100.0%)</option>
 				
-				<option value="file12">github.com/yanosea/mindnum/pkg/errors/errors.go (100.0%)</option>
+				<option value="file12">github.com/yanosea/mindnum/pkg/utility/capture.go (100.0%)</option>
 				
-				<option value="file13">github.com/yanosea/mindnum/pkg/utility/capture.go (100.0%)</option>
-				
-				<option value="file14">github.com/yanosea/mindnum/pkg/utility/version_util.go (100.0%)</option>
+				<option value="file13">github.com/yanosea/mindnum/pkg/utility/version_util.go (100.0%)</option>
 				
 				</select>
 			</div>
@@ -170,11 +168,10 @@ func (uc *VersionUseCase) Run(version string) *VersionUsecaseOutputDto <span cla
 		<pre class="file" id="file2" style="display: none">package mindnum
 
 import (
+        "errors"
         "strconv"
         "strings"
         "time"
-
-        "github.com/yanosea/mindnum/pkg/errors"
 )
 
 // Mindnum is a struct that represents a mind number and its description.
@@ -227,9 +224,9 @@ func GetMindNumber(birthday string) (int, error) <span class="cov8" title="1">{
 		<pre class="file" id="file3" style="display: none">package repository
 
 import (
-        mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
+        "errors"
 
-        "github.com/yanosea/mindnum/pkg/errors"
+        mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
 )
 
 // mindnumRepository is a struct that implements the MindnumRepository interface.
@@ -319,9 +316,11 @@ func (c *Cli) Run() int <span class="cov8" title="1">{
                 exitCode = 1
         }</span>
 
-        <span class="cov8" title="1">presenter.Present(out, output)
+        <span class="cov8" title="1">if err := presenter.Print(out, output); err != nil </span><span class="cov8" title="1">{
+                exitCode = 1
+        }</span>
 
-        return exitCode</span>
+        <span class="cov8" title="1">return exitCode</span>
 }
 </pre>
 		
@@ -544,9 +543,9 @@ Use "mindnum [command] --help" for more information about a command.
 		<pre class="file" id="file8" style="display: none">package formatter
 
 import (
-        "fmt"
+        "errors"
 
-        "github.com/yanosea/mindnum/pkg/errors"
+        "fmt"
 )
 
 // Formatter is an interface that formats the output of mindnum cli.
@@ -669,54 +668,22 @@ import (
         "io"
 )
 
-// Present is a function that writes the output to the writer.
-func Present(writer io.Writer, output string) <span class="cov8" title="1">{
-        if output != "" </span><span class="cov8" title="1">{
-                fmt.Fprintf(writer, "%s\n", output)
-        }</span>
-}
-</pre>
-		
-		<pre class="file" id="file12" style="display: none">package errors
+// PrintFunc is a function type that defines the signature for printing output.
+type PrintFunc func(writer io.Writer, output string) error
 
-import (
-        "fmt"
-)
-
-// wrappedError is a struct that wraps an error and a message
-type wrappedError struct {
-        err error
-        msg string
-}
-
-// Error returns the error message formatted as a string
-func (e *wrappedError) Error() string <span class="cov8" title="1">{
-        if e.err == nil &amp;&amp; e.msg == "" </span><span class="cov8" title="1">{
-                return ""
-        }</span> else<span class="cov8" title="1"> if e.err == nil &amp;&amp; e.msg != "" </span><span class="cov8" title="1">{
-                return e.msg
-        }</span> else<span class="cov8" title="1"> if e.err != nil &amp;&amp; e.msg == "" </span><span class="cov8" title="1">{
-                return e.err.Error()
+// Print is a function that writes the output to the writer.
+var Print PrintFunc = func(writer io.Writer, output string) error <span class="cov8" title="1">{
+        if output != "" &amp;&amp; output != "\n" </span><span class="cov8" title="1">{
+                _, err := fmt.Fprintf(writer, "%s\n", output)
+                return err
         }</span> else<span class="cov8" title="1"> {
-                return fmt.Sprintf("%s : %v", e.msg, e.err)
+                _, err := fmt.Fprintln(writer)
+                return err
         }</span>
 }
-
-// New returns a new error with the given message
-func New(msg string) error <span class="cov8" title="1">{
-        return &amp;wrappedError{msg: msg}
-}</span>
-
-// Wrap returns a new error that wraps the given error with the given message
-func Wrap(err error, msg string) error <span class="cov8" title="1">{
-        return &amp;wrappedError{
-                err: err,
-                msg: msg,
-        }
-}</span>
 </pre>
 		
-		<pre class="file" id="file13" style="display: none">package utility
+		<pre class="file" id="file12" style="display: none">package utility
 
 import (
         "os"
@@ -724,27 +691,31 @@ import (
         "github.com/yanosea/mindnum/pkg/proxy"
 )
 
-// Capturable is an interface that captures the output of a function.
-type Capturable interface {
+// Capturer is an interface that captures the output of a function.
+type Capturer interface {
         CaptureOutput(fnc func()) (string, string, error)
 }
 
-// capturer is a struct that implements the Capturable interface.
+// capturer is a struct that implements the Captures interface.
 type capturer struct {
-        // StdBuffer is a buffer for standard output.
-        StdBuffer proxy.Buffer
-        // ErrBuffer is a buffer for error output.
-        ErrBuffer proxy.Buffer
+        // os is an interface for operating system functions.
+        os proxy.Os
+        // stdBuffer is a buffer for standard output.
+        stdBuffer proxy.Buffer
+        // errBuffer is a buffer for error output.
+        errBuffer proxy.Buffer
 }
 
 // NewCapturer returns a new instance of the capturer struct.
 func NewCapturer(
+        os proxy.Os,
         stdBuffer proxy.Buffer,
         errBuffer proxy.Buffer,
 ) *capturer <span class="cov8" title="1">{
         return &amp;capturer{
-                StdBuffer: stdBuffer,
-                ErrBuffer: errBuffer,
+                os:        os,
+                stdBuffer: stdBuffer,
+                errBuffer: errBuffer,
         }
 }</span>
 
@@ -757,35 +728,45 @@ func (c *capturer) CaptureOutput(fnc func()) (string, string, error) <span class
                 os.Stderr = origStderr
         }</span>()
 
-        <span class="cov8" title="1">rOut, wOut, _ := os.Pipe()
-        rErr, wErr, _ := os.Pipe()
-        os.Stdout = wOut
-        os.Stderr = wErr
+        <span class="cov8" title="1">rOut, wOut, err := c.os.Pipe()
+        if err != nil </span><span class="cov8" title="1">{
+                return "", "", err
+        }</span>
+        <span class="cov8" title="1">rErr, wErr, err := c.os.Pipe()
+        if err != nil </span><span class="cov8" title="1">{
+                return "", "", err
+        }</span>
+        <span class="cov8" title="1">os.Stdout = wOut.(interface{ AsOsFile() *os.File }).AsOsFile()
+        os.Stderr = wErr.(interface{ AsOsFile() *os.File }).AsOsFile()
 
         fnc()
 
-        wOut.Close()
-        wErr.Close()
-
-        if _, err := c.StdBuffer.ReadFrom(rOut); err != nil </span><span class="cov8" title="1">{
+        if err := wOut.Close(); err != nil </span><span class="cov8" title="1">{
+                return "", "", err
+        }</span>
+        <span class="cov8" title="1">if err := wErr.Close(); err != nil </span><span class="cov8" title="1">{
                 return "", "", err
         }</span>
 
-        <span class="cov8" title="1">if _, err := c.ErrBuffer.ReadFrom(rErr); err != nil </span><span class="cov8" title="1">{
+        <span class="cov8" title="1">if _, err := c.stdBuffer.ReadFrom(rOut); err != nil </span><span class="cov8" title="1">{
                 return "", "", err
         }</span>
 
-        <span class="cov8" title="1">stdout := c.StdBuffer.String()
-        errout := c.ErrBuffer.String()
+        <span class="cov8" title="1">if _, err := c.errBuffer.ReadFrom(rErr); err != nil </span><span class="cov8" title="1">{
+                return "", "", err
+        }</span>
 
-        c.StdBuffer.Reset()
-        c.ErrBuffer.Reset()
+        <span class="cov8" title="1">stdout := c.stdBuffer.String()
+        errout := c.errBuffer.String()
+
+        c.stdBuffer.Reset()
+        c.errBuffer.Reset()
 
         return stdout, errout, nil</span>
 }
 </pre>
 		
-		<pre class="file" id="file14" style="display: none">package utility
+		<pre class="file" id="file13" style="display: none">package utility
 
 import (
         "github.com/yanosea/mindnum/pkg/proxy"

@@ -47,7 +47,9 @@ func (c *Cli) Run() int {
 		exitCode = 1
 	}
 
-	presenter.Present(out, output)
+	if err := presenter.Print(out, output); err != nil {
+		exitCode = 1
+	}
 
 	return exitCode
 }

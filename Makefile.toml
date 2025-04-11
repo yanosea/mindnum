@@ -18,6 +18,7 @@ mockgen -source=./app/domain/mindnum/mindnum_repository.go -destination=./app/do
 mockgen -source=./pkg/proxy/buffer.go -destination=./pkg/proxy/buffer_mock.go -package=proxy
 mockgen -source=./pkg/proxy/cobra.go -destination=./pkg/proxy/cobra_mock.go -package=proxy
 mockgen -source=./pkg/proxy/debug.go -destination=./pkg/proxy/debug_mock.go -package=proxy
+mockgen -source=./pkg/proxy/os.go -destination=./pkg/proxy/os_mock.go -package=proxy
 mockgen -source=./pkg/proxy/pflag.go -destination=./pkg/proxy/pflag_mock.go -package=proxy
 '''
 
