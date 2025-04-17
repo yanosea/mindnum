@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"testing"
 
-	mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
-	mindnumRepo "github.com/yanosea/mindnum/app/infrastructure/text/repository"
+	mindnumDomain "github.com/yanosea/mindnum/v2/app/domain/mindnum"
+	mindnumRepo "github.com/yanosea/mindnum/v2/app/infrastructure/text/repository"
 
 	"go.uber.org/mock/gomock"
 )

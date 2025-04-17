@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
+	mindnumDomain "github.com/yanosea/mindnum/v2/app/domain/mindnum"
 )
 
 func TestNewMindnumRepository(t *testing.T) {

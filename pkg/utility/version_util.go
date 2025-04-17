@@ -1,7 +1,7 @@
 package utility
 
 import (
-	"github.com/yanosea/mindnum/pkg/proxy"
+	"github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 // VersionUtil is an interface that provides the version of the application.

@@ -5,8 +5,8 @@ import (
 	"io"
 	"testing"
 
-	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/presenter"
-	"github.com/yanosea/mindnum/pkg/proxy"
+	"github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/presenter"
+	"github.com/yanosea/mindnum/v2/pkg/proxy"
 
 	"go.uber.org/mock/gomock"
 )

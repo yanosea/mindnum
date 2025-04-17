@@ -1,7 +1,7 @@
 package mindnum
 
 import (
-	mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
+	mindnumDomain "github.com/yanosea/mindnum/v2/app/domain/mindnum"
 )
 
 // GetMindnumUseCase is a struct that provides the use case of getting a mind number.

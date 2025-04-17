@@ -55,33 +55,33 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/yanosea/mindnum/app/application/mindnum/get_mindnum_usecase.go (100.0%)</option>
+				<option value="file0">github.com/yanosea/mindnum/v2/app/application/mindnum/get_mindnum_usecase.go (100.0%)</option>
 				
-				<option value="file1">github.com/yanosea/mindnum/app/application/mindnum/version_usecase.go (100.0%)</option>
+				<option value="file1">github.com/yanosea/mindnum/v2/app/application/mindnum/version_usecase.go (100.0%)</option>
 				
-				<option value="file2">github.com/yanosea/mindnum/app/domain/mindnum/mindnum_model.go (100.0%)</option>
+				<option value="file2">github.com/yanosea/mindnum/v2/app/domain/mindnum/mindnum_model.go (100.0%)</option>
 				
-				<option value="file3">github.com/yanosea/mindnum/app/infrastructure/text/repository/mindnum_repository.go (100.0%)</option>
+				<option value="file3">github.com/yanosea/mindnum/v2/app/infrastructure/text/repository/mindnum_repository.go (100.0%)</option>
 				
-				<option value="file4">github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/command.go (100.0%)</option>
+				<option value="file4">github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/command/command.go (100.0%)</option>
 				
-				<option value="file5">github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/mindnum/get.go (100.0%)</option>
+				<option value="file5">github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/command/mindnum/get.go (100.0%)</option>
 				
-				<option value="file6">github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/mindnum/version.go (100.0%)</option>
+				<option value="file6">github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/command/mindnum/version.go (100.0%)</option>
 				
-				<option value="file7">github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/root.go (100.0%)</option>
+				<option value="file7">github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/command/root.go (100.0%)</option>
 				
-				<option value="file8">github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter/formatter.go (100.0%)</option>
+				<option value="file8">github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/formatter/formatter.go (100.0%)</option>
 				
-				<option value="file9">github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter/text.go (100.0%)</option>
+				<option value="file9">github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/formatter/text.go (100.0%)</option>
 				
-				<option value="file10">github.com/yanosea/mindnum/app/presentation/cli/mindnum/main.go (100.0%)</option>
+				<option value="file10">github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/main.go (100.0%)</option>
 				
-				<option value="file11">github.com/yanosea/mindnum/app/presentation/cli/mindnum/presenter/presenter.go (100.0%)</option>
+				<option value="file11">github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/presenter/presenter.go (100.0%)</option>
 				
-				<option value="file12">github.com/yanosea/mindnum/pkg/utility/capture.go (100.0%)</option>
+				<option value="file12">github.com/yanosea/mindnum/v2/pkg/utility/capture.go (100.0%)</option>
 				
-				<option value="file13">github.com/yanosea/mindnum/pkg/utility/version_util.go (100.0%)</option>
+				<option value="file13">github.com/yanosea/mindnum/v2/pkg/utility/version_util.go (100.0%)</option>
 				
 				</select>
 			</div>
@@ -98,7 +98,7 @@
 		<pre class="file" id="file0" style="display: none">package mindnum
 
 import (
-        mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
+        mindnumDomain "github.com/yanosea/mindnum/v2/app/domain/mindnum"
 )
 
 // GetMindnumUseCase is a struct that provides the use case of getting a mind number.
@@ -226,7 +226,7 @@ func GetMindNumber(birthday string) (int, error) <span class="cov8" title="1">{
 import (
         "errors"
 
-        mindnumDomain "github.com/yanosea/mindnum/app/domain/mindnum"
+        mindnumDomain "github.com/yanosea/mindnum/v2/app/domain/mindnum"
 )
 
 // mindnumRepository is a struct that implements the MindnumRepository interface.
@@ -272,10 +272,10 @@ func (r *mindnumRepository) FindByNumber(number int) (*mindnumDomain.Mindnum, er
 import (
         "os"
 
-        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
-        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/presenter"
+        "github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/formatter"
+        "github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/presenter"
 
-        "github.com/yanosea/mindnum/pkg/proxy"
+        "github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 // Cli is a struct that represents the command line interface of mindnum cli.
@@ -329,11 +329,11 @@ func (c *Cli) Run() int <span class="cov8" title="1">{
 import (
         c "github.com/spf13/cobra"
 
-        mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
-        mindnumRepo "github.com/yanosea/mindnum/app/infrastructure/text/repository"
-        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
+        mindnumApp "github.com/yanosea/mindnum/v2/app/application/mindnum"
+        mindnumRepo "github.com/yanosea/mindnum/v2/app/infrastructure/text/repository"
+        "github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/formatter"
 
-        "github.com/yanosea/mindnum/pkg/proxy"
+        "github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 var (
@@ -418,10 +418,10 @@ Arguments:
 import (
         c "github.com/spf13/cobra"
 
-        mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
-        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
+        mindnumApp "github.com/yanosea/mindnum/v2/app/application/mindnum"
+        "github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/formatter"
 
-        "github.com/yanosea/mindnum/pkg/proxy"
+        "github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 // NewVersionCommand returns a new instance of the version command.
@@ -481,9 +481,9 @@ Flags:
 		<pre class="file" id="file7" style="display: none">package command
 
 import (
-        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/mindnum"
+        "github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/command/mindnum"
 
-        "github.com/yanosea/mindnum/pkg/proxy"
+        "github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 // NewRootCommand returns a new instance of the root command.
@@ -598,7 +598,7 @@ import (
         "fmt"
         "strings"
 
-        mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
+        mindnumApp "github.com/yanosea/mindnum/v2/app/application/mindnum"
 )
 
 // TextFormatter is a struct that formats the output of mindnum cli.
@@ -634,10 +634,10 @@ func (f *TextFormatter) Format(result interface{}) string <span class="cov8" tit
 import (
         "os"
 
-        "github.com/yanosea/mindnum/app/presentation/cli/mindnum/command"
+        "github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/command"
 
-        "github.com/yanosea/mindnum/pkg/proxy"
-        "github.com/yanosea/mindnum/pkg/utility"
+        "github.com/yanosea/mindnum/v2/pkg/proxy"
+        "github.com/yanosea/mindnum/v2/pkg/utility"
 )
 
 var (
@@ -688,7 +688,7 @@ var Print PrintFunc = func(writer io.Writer, output string) error <span class="c
 import (
         "os"
 
-        "github.com/yanosea/mindnum/pkg/proxy"
+        "github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 // Capturer is an interface that captures the output of a function.
@@ -769,7 +769,7 @@ func (c *capturer) CaptureOutput(fnc func()) (string, string, error) <span class
 		<pre class="file" id="file13" style="display: none">package utility
 
 import (
-        "github.com/yanosea/mindnum/pkg/proxy"
+        "github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 // VersionUtil is an interface that provides the version of the application.

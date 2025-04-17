@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
+	mindnumApp "github.com/yanosea/mindnum/v2/app/application/mindnum"
 )
 
 // TextFormatter is a struct that formats the output of mindnum cli.

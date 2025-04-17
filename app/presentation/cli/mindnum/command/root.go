@@ -1,9 +1,9 @@
 package command
 
 import (
-	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/command/mindnum"
+	"github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/command/mindnum"
 
-	"github.com/yanosea/mindnum/pkg/proxy"
+	"github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 // NewRootCommand returns a new instance of the root command.

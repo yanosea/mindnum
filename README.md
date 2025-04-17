@@ -54,7 +54,7 @@ Flags:
 ### 🐭 Using go
 
 ```
-go install github.com/yanosea/mindnum/app/presentation/cli/mindnum@latest 
+go install github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum@latest 
 ```
 
 ### 🍺 Using homebrew
@@ -75,7 +75,7 @@ Go to the [Releases](https://github.com/yanosea/mindnum/releases) and download t
 Reinstall `mindnum`!
 
 ```
-go install github.com/yanosea/mindnum/app/presentation/cli/mindnum@latest 
+go install github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum@latest 
 ```
 
 ### 🍺 Using homebrew
