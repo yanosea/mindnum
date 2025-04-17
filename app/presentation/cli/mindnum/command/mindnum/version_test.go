@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/yanosea/mindnum/pkg/proxy"
+	"github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 func TestNewVersionCommand(t *testing.T) {

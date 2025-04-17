@@ -5,7 +5,7 @@ import (
 	"runtime/debug"
 	"testing"
 
-	"github.com/yanosea/mindnum/pkg/proxy"
+	"github.com/yanosea/mindnum/v2/pkg/proxy"
 
 	"go.uber.org/mock/gomock"
 )

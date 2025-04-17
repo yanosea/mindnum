@@ -4,10 +4,10 @@ import (
 	"os"
 	"testing"
 
-	mindnumRepo "github.com/yanosea/mindnum/app/infrastructure/text/repository"
+	mindnumRepo "github.com/yanosea/mindnum/v2/app/infrastructure/text/repository"
 
-	"github.com/yanosea/mindnum/pkg/proxy"
-	"github.com/yanosea/mindnum/pkg/utility"
+	"github.com/yanosea/mindnum/v2/pkg/proxy"
+	"github.com/yanosea/mindnum/v2/pkg/utility"
 )
 
 func Test_main(t *testing.T) {

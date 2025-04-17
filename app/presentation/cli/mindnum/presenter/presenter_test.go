@@ -4,8 +4,8 @@ import (
 	o "os"
 	"testing"
 
-	"github.com/yanosea/mindnum/pkg/proxy"
-	"github.com/yanosea/mindnum/pkg/utility"
+	"github.com/yanosea/mindnum/v2/pkg/proxy"
+	"github.com/yanosea/mindnum/v2/pkg/utility"
 )
 
 func TestPrint(t *testing.T) {

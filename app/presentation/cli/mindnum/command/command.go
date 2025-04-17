@@ -3,10 +3,10 @@ package command
 import (
 	"os"
 
-	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
-	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/presenter"
+	"github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/formatter"
+	"github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/presenter"
 
-	"github.com/yanosea/mindnum/pkg/proxy"
+	"github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 // Cli is a struct that represents the command line interface of mindnum cli.

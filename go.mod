@@ -1,4 +1,4 @@
-module github.com/yanosea/mindnum
+module github.com/yanosea/mindnum/v2
 
 go 1.24.1
 

@@ -3,10 +3,10 @@ package mindnum
 import (
 	c "github.com/spf13/cobra"
 
-	mindnumApp "github.com/yanosea/mindnum/app/application/mindnum"
-	"github.com/yanosea/mindnum/app/presentation/cli/mindnum/formatter"
+	mindnumApp "github.com/yanosea/mindnum/v2/app/application/mindnum"
+	"github.com/yanosea/mindnum/v2/app/presentation/cli/mindnum/formatter"
 
-	"github.com/yanosea/mindnum/pkg/proxy"
+	"github.com/yanosea/mindnum/v2/pkg/proxy"
 )
 
 // NewVersionCommand returns a new instance of the version command.
