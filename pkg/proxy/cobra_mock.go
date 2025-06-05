@@ -21,6 +21,7 @@ import (
 type MockCobra struct {
 	ctrl     *gomock.Controller
 	recorder *MockCobraMockRecorder
+	isgomock struct{}
 }
 
 // MockCobraMockRecorder is the mock recorder for MockCobra.
@@ -72,6 +73,7 @@ func (mr *MockCobraMockRecorder) NewCommand() *gomock.Call {
 type MockPositionalArgs struct {
 	ctrl     *gomock.Controller
 	recorder *MockPositionalArgsMockRecorder
+	isgomock struct{}
 }
 
 // MockPositionalArgsMockRecorder is the mock recorder for MockPositionalArgs.
@@ -109,6 +111,7 @@ func (mr *MockPositionalArgsMockRecorder) GetPositionalArgs() *gomock.Call {
 type MockCommand struct {
 	ctrl     *gomock.Controller
 	recorder *MockCommandMockRecorder
+	isgomock struct{}
 }
 
 // MockCommandMockRecorder is the mock recorder for MockCommand.
@@ -225,15 +228,15 @@ func (mr *MockCommandMockRecorder) SetArgs(positionalArgs any) *gomock.Call {
 }
 
 // SetErr mocks base method.
-func (m *MockCommand) SetErr(io io.Writer) {
+func (m *MockCommand) SetErr(arg0 io.Writer) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "SetErr", io)
+	m.ctrl.Call(m, "SetErr", arg0)
 }
 
 // SetErr indicates an expected call of SetErr.
-func (mr *MockCommandMockRecorder) SetErr(io any) *gomock.Call {
+func (mr *MockCommandMockRecorder) SetErr(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetErr", reflect.TypeOf((*MockCommand)(nil).SetErr), io)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetErr", reflect.TypeOf((*MockCommand)(nil).SetErr), arg0)
 }
 
 // SetHelpTemplate mocks base method.
@@ -261,15 +264,15 @@ func (mr *MockCommandMockRecorder) SetMaximumNArgs(n any) *gomock.Call {
 }
 
 // SetOut mocks base method.
-func (m *MockCommand) SetOut(io io.Writer) {
+func (m *MockCommand) SetOut(arg0 io.Writer) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "SetOut", io)
+	m.ctrl.Call(m, "SetOut", arg0)
 }
 
 // SetOut indicates an expected call of SetOut.
-func (mr *MockCommandMockRecorder) SetOut(io any) *gomock.Call {
+func (mr *MockCommandMockRecorder) SetOut(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetOut", reflect.TypeOf((*MockCommand)(nil).SetOut), io)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetOut", reflect.TypeOf((*MockCommand)(nil).SetOut), arg0)
 }
 
 // SetRunE mocks base method.
