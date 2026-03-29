@@ -23,7 +23,7 @@ func (f *TextFormatter) Format(result interface{}) string {
 		formatted = fmt.Sprintf("mindnum version %s", v.Version)
 	case *mindnumApp.GetMindnumUsecaseOutputDto:
 		var builder strings.Builder
-		builder.WriteString(fmt.Sprintf("Your mind number is %d!", v.MindNumber))
+		fmt.Fprintf(&builder, "Your mind number is %d!", v.MindNumber)
 		if trimmedDescription := strings.TrimSpace(v.Description); trimmedDescription != "" {
 			builder.WriteString("\n\n")
 			builder.WriteString(trimmedDescription)

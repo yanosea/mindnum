@@ -617,7 +617,7 @@ func (f *TextFormatter) Format(result interface{}) string <span class="cov8" tit
                 formatted = fmt.Sprintf("mindnum version %s", v.Version)</span>
         case *mindnumApp.GetMindnumUsecaseOutputDto:<span class="cov8" title="1">
                 var builder strings.Builder
-                builder.WriteString(fmt.Sprintf("Your mind number is %d!", v.MindNumber))
+                fmt.Fprintf(&amp;builder, "Your mind number is %d!", v.MindNumber)
                 if trimmedDescription := strings.TrimSpace(v.Description); trimmedDescription != "" </span><span class="cov8" title="1">{
                         builder.WriteString("\n\n")
                         builder.WriteString(trimmedDescription)
